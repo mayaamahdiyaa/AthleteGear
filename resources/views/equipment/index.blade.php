@@ -22,9 +22,7 @@
             --line: #E4E6E4;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -33,17 +31,9 @@
             font-family: 'Inter', sans-serif;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+        a { color: inherit; text-decoration: none; }
+        button, input { font: inherit; }
 
-        button,
-        input {
-            font: inherit;
-        }
-
-        /* SIDEBAR */
         .sidebar {
             position: fixed;
             inset: 0 auto 0 0;
@@ -64,11 +54,7 @@
             padding: 0 8px 35px;
         }
 
-        .runner-logo {
-            width: 43px;
-            height: 43px;
-            flex-shrink: 0;
-        }
+        .runner-logo { width: 43px; height: 43px; flex-shrink: 0; }
 
         .brand-name {
             font-family: 'Barlow Condensed', sans-serif;
@@ -79,9 +65,7 @@
             white-space: nowrap;
         }
 
-        .brand-name span {
-            color: var(--red);
-        }
+        .brand-name span { color: var(--red); }
 
         .nav-label {
             padding: 0 12px;
@@ -92,10 +76,7 @@
             letter-spacing: 1.8px;
         }
 
-        .nav {
-            display: grid;
-            gap: 8px;
-        }
+        .nav { display: grid; gap: 8px; }
 
         .nav-link {
             display: flex;
@@ -109,20 +90,14 @@
             transition: background .2s;
         }
 
-        .nav-link:hover {
-            background: #30363B;
-        }
+        .nav-link:hover { background: #30363B; }
 
         .nav-link.active {
-            background: var(--red);
             color: white;
+            background: var(--red);
         }
 
-        .nav-icon {
-            width: 22px;
-            text-align: center;
-            font-size: 19px;
-        }
+        .nav-icon { width: 22px; text-align: center; font-size: 19px; }
 
         .sidebar-bottom {
             margin-top: auto;
@@ -137,11 +112,8 @@
             border-top: 2px solid #FFFFFF55;
             border-bottom: 2px solid #FFFFFF55;
             background: repeating-linear-gradient(
-                105deg,
-                transparent 0,
-                transparent 31px,
-                #FFFFFF24 32px,
-                #FFFFFF24 34px
+                105deg, transparent 0, transparent 31px,
+                #FFFFFF24 32px, #FFFFFF24 34px
             );
         }
 
@@ -159,11 +131,7 @@
             line-height: 1.6;
         }
 
-        /* MAIN AND TOPBAR */
-        .main {
-            min-height: 100vh;
-            margin-left: 238px;
-        }
+        .main { min-height: 100vh; margin-left: 238px; }
 
         .topbar {
             min-height: 68px;
@@ -172,20 +140,13 @@
             justify-content: space-between;
             gap: 20px;
             padding: 12px 30px;
-            background: #FFFFFF;
+            background: white;
             border-bottom: 1px solid var(--line);
         }
 
-        .topbar-title {
-            color: var(--muted);
-            font-size: 12px;
-        }
+        .topbar-title { color: var(--muted); font-size: 12px; }
 
-        .user-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .user-area { display: flex; align-items: center; gap: 12px; }
 
         .avatar {
             width: 39px;
@@ -198,11 +159,7 @@
             font-weight: 700;
         }
 
-        .user-info strong {
-            display: block;
-            font-size: 12px;
-        }
-
+        .user-info strong { display: block; font-size: 12px; }
         .user-info span {
             color: var(--muted);
             font-size: 11px;
@@ -224,7 +181,6 @@
             font-weight: 700;
         }
 
-        /* TRACK AND FIELD BANNER */
         .hero {
             position: relative;
             isolation: isolate;
@@ -236,15 +192,10 @@
             overflow: hidden;
             padding: 35px 38px;
             color: white;
-
             background:
-                linear-gradient(
-                    90deg,
-                    rgba(20, 25, 29, 0.72) 0%,
-                    rgba(20, 25, 29, 0.40) 55%,
-                    rgba(20, 25, 29, 0.15) 100%
-                ),
-                url("/images/Track%20Banner.jpg") center center / cover no-repeat;
+                linear-gradient(90deg, rgba(20,25,29,.78), rgba(20,25,29,.25)),
+                url("/images/Track%20Banner.jpg") center / cover no-repeat,
+                var(--charcoal);
         }
 
         .hero::after {
@@ -255,16 +206,13 @@
             height: 180px;
             right: -15%;
             bottom: -125px;
-            border-top: 3px solid rgba(255, 255, 255, .9);
-            border-bottom: 3px solid rgba(255, 255, 255, .65);
+            border-top: 3px solid #FFFFFFE6;
+            border-bottom: 3px solid #FFFFFFA6;
             transform: rotate(-9deg);
             pointer-events: none;
         }
 
-        .hero-copy {
-            position: relative;
-            z-index: 1;
-        }
+        .hero-copy { position: relative; z-index: 1; }
 
         .eyebrow {
             margin: 0 0 8px;
@@ -285,10 +233,7 @@
             text-transform: uppercase;
         }
 
-        .hero-subtitle {
-            margin: 14px 0 0;
-            font-size: 14px;
-        }
+        .hero-subtitle { margin: 14px 0 0; font-size: 14px; }
 
         .hero-note {
             position: relative;
@@ -311,10 +256,7 @@
             background: var(--red);
         }
 
-        /* CONTENT */
-        .content {
-            padding: 25px 30px 40px;
-        }
+        .content { padding: 25px 30px 40px; }
 
         .flash {
             padding: 13px 15px;
@@ -325,17 +267,8 @@
             line-height: 1.5;
         }
 
-        .flash.success {
-            color: #286746;
-            background: #EDF7F0;
-            border-color: #CBE4D2;
-        }
-
-        .flash.error {
-            color: #A72C35;
-            background: #FFF0F0;
-            border-color: #F0CACA;
-        }
+        .flash.success { color: #286746; background: #EDF7F0; border-color: #CBE4D2; }
+        .flash.error { color: #A72C35; background: #FFF0F0; border-color: #F0CACA; }
 
         .toolbar {
             display: flex;
@@ -345,9 +278,7 @@
             margin-bottom: 24px;
         }
 
-        .search-form {
-            width: min(100%, 590px);
-        }
+        .search-form { width: min(100%, 590px); }
 
         .search-input {
             width: 100%;
@@ -381,31 +312,11 @@
             white-space: nowrap;
         }
 
-        .button-primary {
-            color: white;
-            background: var(--red);
-        }
-
-        .button-primary:hover {
-            background: var(--red-dark);
-        }
-
-        .button-dark {
-            color: white;
-            background: var(--charcoal);
-        }
-
-        .button-outline {
-            color: var(--text);
-            background: white;
-            border-color: #D4DADD;
-        }
-
-        .button-danger {
-            color: #C5323B;
-            background: white;
-            border-color: #EFC2C5;
-        }
+        .button-primary { color: white; background: var(--red); }
+        .button-primary:hover { background: var(--red-dark); }
+        .button-dark { color: white; background: var(--charcoal); }
+        .button-outline { color: var(--text); background: white; border-color: #D4DADD; }
+        .button-danger { color: #C5323B; background: white; border-color: #EFC2C5; }
 
         .admin-note {
             margin: 7px 0 0;
@@ -414,7 +325,6 @@
             text-align: right;
         }
 
-        /* INVENTORY TABLE */
         .table-card {
             overflow: hidden;
             background: white;
@@ -422,9 +332,7 @@
             border-radius: 8px;
         }
 
-        .table-scroll {
-            overflow-x: auto;
-        }
+        .table-scroll { overflow-x: auto; }
 
         .inventory-table {
             width: 100%;
@@ -449,18 +357,9 @@
             vertical-align: middle;
         }
 
-        .inventory-table tbody tr:last-child td {
-            border-bottom: 0;
-        }
-
-        .inventory-table tbody tr:hover {
-            background: #FCFBF8;
-        }
-
-        .number-cell {
-            color: #68747C;
-            font-weight: 600;
-        }
+        .inventory-table tbody tr:last-child td { border-bottom: 0; }
+        .inventory-table tbody tr:hover { background: #FCFBF8; }
+        .number-cell { color: #68747C; font-weight: 600; }
 
         .equipment-image {
             width: 68px;
@@ -472,14 +371,8 @@
             background: #F5F5F3;
         }
 
-        .equipment-name {
-            min-width: 135px;
-            font-weight: 700;
-        }
-
-        .equipment-name a:hover {
-            color: var(--red-dark);
-        }
+        .equipment-name { min-width: 135px; font-weight: 700; }
+        .equipment-name a:hover { color: var(--red-dark); }
 
         .category-badge {
             display: inline-block;
@@ -491,14 +384,9 @@
             white-space: nowrap;
         }
 
-        .stock-number {
-            display: block;
-            margin-bottom: 6px;
-            font-size: 13px;
-            font-weight: 700;
-        }
+        .stock-number { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 700; }
 
-        .status {
+        .status, .condition {
             display: inline-block;
             padding: 5px 9px;
             border-radius: 20px;
@@ -507,58 +395,14 @@
             white-space: nowrap;
         }
 
-        .status-available {
-            color: #28794E;
-            background: #D9F0E1;
-        }
+        .status-available, .condition-good { color: #28794E; background: #D9F0E1; }
+        .status-low, .condition-fair { color: #A85B00; background: #FFEBC5; }
+        .status-out, .condition-poor { color: #B52C35; background: #FFE0E1; }
+        .condition { text-transform: capitalize; }
 
-        .status-low {
-            color: #A85B00;
-            background: #FFEBC5;
-        }
-
-        .status-out {
-            color: #B52C35;
-            background: #FFE0E1;
-        }
-
-        .condition {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            color: #28794E;
-            background: #D9F0E1;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: capitalize;
-        }
-
-        .condition-fair {
-            color: #865900;
-            background: #FFEBC5;
-        }
-
-        .condition-poor {
-            color: #B52C35;
-            background: #FFE0E1;
-        }
-
-        .actions {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            white-space: nowrap;
-        }
-
-        .actions .button {
-            min-height: 32px;
-            padding: 7px 9px;
-        }
-
-        .delete-form {
-            display: inline;
-            margin: 0;
-        }
+        .actions { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .actions .button { min-height: 32px; padding: 7px 9px; }
+        .delete-form { display: inline; margin: 0; }
 
         .table-footer {
             display: flex;
@@ -570,25 +414,10 @@
             background: #FDFDFC;
         }
 
-        .legend {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            color: #68747C;
-            font-size: 10px;
-        }
+        .legend { display: flex; align-items: center; gap: 7px; color: #68747C; font-size: 10px; }
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
 
-        .legend-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .empty-state {
-            padding: 55px 20px;
-            text-align: center;
-        }
-
+        .empty-state { padding: 55px 20px; text-align: center; }
         .empty-state h2 {
             margin: 0 0 8px;
             font-family: 'Barlow Condensed', sans-serif;
@@ -596,136 +425,44 @@
             text-transform: uppercase;
         }
 
-        .empty-state p {
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        .page-footer {
-            padding-top: 22px;
-            color: #899198;
-            font-size: 10px;
-            text-align: center;
-        }
+        .empty-state p { color: var(--muted); font-size: 13px; }
+        .page-footer { padding-top: 22px; color: #899198; font-size: 10px; text-align: center; }
 
         @media (max-width: 1100px) {
-            .sidebar {
-                width: 205px;
-            }
-
-            .main {
-                margin-left: 205px;
-            }
-
-            .content {
-                padding: 22px 18px 35px;
-            }
-
-            .inventory-table {
-                min-width: 900px;
-            }
+            .sidebar { width: 205px; }
+            .main { margin-left: 205px; }
+            .content { padding: 22px 18px 35px; }
+            .inventory-table { min-width: 900px; }
         }
 
         @media (max-width: 760px) {
-            .sidebar {
-                position: static;
-                width: 100%;
-                padding: 13px 15px;
-            }
+            .sidebar { position: static; width: 100%; padding: 13px 15px; }
+            .brand { padding: 0 0 13px; }
+            .nav-label, .sidebar-bottom { display: none; }
+            .nav { display: flex; gap: 6px; overflow-x: auto; }
+            .nav-link { flex-shrink: 0; gap: 7px; padding: 10px 12px; font-size: 11px; }
+            .main { margin-left: 0; }
+            .topbar { min-height: 60px; padding: 12px 15px; }
+            .topbar-title { display: none; }
+            .user-area { gap: 8px; }
+            .avatar { width: 32px; height: 32px; }
+            .logout-form { margin-left: 4px; padding-left: 10px; }
+            .hero { min-height: 190px; padding: 27px 20px; }
+            .hero h1 { font-size: clamp(38px, 9vw, 54px); }
+            .hero-note { display: none; }
+            .content { padding: 18px 12px 28px; }
+            .toolbar { align-items: stretch; flex-direction: column; gap: 12px; margin-bottom: 17px; }
+            .search-form { width: 100%; }
+            .toolbar-action { align-self: flex-start; }
+            .admin-note { text-align: left; }
+            .inventory-table { min-width: 950px; }
+        }
 
-            .brand {
-                padding: 0 0 13px;
-            }
-
-            .nav-label,
-            .sidebar-bottom {
-                display: none;
-            }
-
-            .nav {
-                display: flex;
-                gap: 6px;
-                overflow-x: auto;
-            }
-
-            .nav-link {
-                flex-shrink: 0;
-                gap: 7px;
-                padding: 10px 12px;
-                font-size: 11px;
-            }
-
-            .main {
-                margin-left: 0;
-            }
-
-            .topbar {
-                min-height: 60px;
-                padding: 12px 15px;
-            }
-
-            .topbar-title {
-                display: none;
-            }
-
-            .user-area {
-                gap: 8px;
-            }
-
-            .avatar {
-                width: 32px;
-                height: 32px;
-            }
-
-            .logout-form {
-                margin-left: 4px;
-                padding-left: 10px;
-            }
-
-            .hero {
-                min-height: 190px;
-                padding: 27px 20px;
-                background-position: center center;
-            }
-
-            .hero h1 {
-                font-size: clamp(38px, 9vw, 54px);
-            }
-
-            .hero-note {
-                display: none;
-            }
-
-            .content {
-                padding: 18px 12px 28px;
-            }
-
-            .toolbar {
-                align-items: stretch;
-                flex-direction: column;
-                gap: 12px;
-                margin-bottom: 17px;
-            }
-
-            .search-form {
-                width: 100%;
-            }
-
-            .toolbar-action {
-                align-self: flex-start;
-            }
-
-            .admin-note {
-                text-align: left;
-            }
-
-            .inventory-table {
-                min-width: 950px;
-            }
+        @media (max-width: 360px) {
+            .topbar { flex-wrap: wrap; }
         }
     </style>
 </head>
-
 <body>
     @php
         $user = auth()->user();
@@ -733,7 +470,7 @@
     @endphp
 
     <aside class="sidebar">
-        <a href="{{ route('equipment.index') }}" class="brand" aria-label="AthleteGear home">
+        <a href="{{ route('dashboard') }}" class="brand" aria-label="AthleteGear Dashboard">
             <svg class="runner-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <circle cx="43" cy="10" r="6" fill="white"/>
                 <path d="M35 19L25 29L37 35L45 25L53 30" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -742,28 +479,28 @@
                 <path d="M37 35L46 44L57 46" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M30 21L42 18" stroke="#D94343" stroke-width="4" stroke-linecap="round"/>
             </svg>
-
             <span class="brand-name">Athlete<span>Gear</span></span>
         </a>
 
         <div class="nav-label">WORKSPACE</div>
 
         <nav class="nav" aria-label="Main navigation">
+            <a href="{{ route('dashboard') }}" class="nav-link">
+                <span class="nav-icon">⌂</span> Dashboard
+            </a>
+
             <a href="{{ route('equipment.index') }}" class="nav-link active">
-                <span class="nav-icon">▤</span>
-                Equipment
+                <span class="nav-icon">▤</span> Equipment
             </a>
 
             @if ($isAdmin)
                 <a href="{{ route('categories.index') }}" class="nav-link">
-                    <span class="nav-icon">▦</span>
-                    Categories
+                    <span class="nav-icon">▦</span> Categories
                 </a>
             @endif
 
             <a href="{{ route('borrowings.index') }}" class="nav-link">
-                <span class="nav-icon">◷</span>
-                Borrowings
+                <span class="nav-icon">◷</span> Borrowings
             </a>
         </nav>
 
@@ -779,9 +516,7 @@
             <div class="topbar-title">ATHLETEGEAR / EQUIPMENT CONTROL</div>
 
             <div class="user-area">
-                <div class="avatar">
-                    {{ strtoupper(substr($user->name, 0, 1)) }}
-                </div>
+                <div class="avatar">{{ strtoupper(substr($user->name, 0, 1)) }}</div>
 
                 <div class="user-info">
                     <strong>{{ $user->name }}</strong>
@@ -803,24 +538,20 @@
             </div>
 
             <div class="hero-note">
-                TRACK & FIELD<br>
-                BUILDS STRONGER<br>
-                ATHLETES
+                EQUIPMENT FOR DETERMINING<br>
+                THE PERFORMANCE OF<br>
+                STRONG ATHLETES
                 <span></span>
             </div>
         </section>
 
         <section class="content">
             @if (session('success'))
-                <div class="flash success" role="status">
-                    ✓ {{ session('success') }}
-                </div>
+                <div class="flash success" role="status">✓ {{ session('success') }}</div>
             @endif
 
             @if (session('error'))
-                <div class="flash error" role="alert">
-                    {{ session('error') }}
-                </div>
+                <div class="flash error" role="alert">{{ session('error') }}</div>
             @endif
 
             @if ($errors->any())
@@ -836,20 +567,15 @@
 
             <div class="toolbar">
                 <form class="search-form" role="search" onsubmit="return false;">
-                    <input
-                        class="search-input"
-                        type="search"
-                        id="equipmentSearch"
+                    <input class="search-input" type="search" id="equipmentSearch"
                         placeholder="⌕  Search equipment by name..."
-                        aria-label="Search equipment by name"
-                    >
+                        aria-label="Search equipment by name">
                 </form>
 
                 @if ($isAdmin)
                     <div class="toolbar-action">
                         <a href="{{ route('equipment.create') }}" class="button button-primary">
-                            <span style="font-size: 17px;">+</span>
-                            Add Equipment
+                            <span style="font-size:17px">+</span> Add Equipment
                         </a>
                         <p class="admin-note">♟ Admin only</p>
                     </div>
@@ -902,7 +628,7 @@
 
                                         $conditionClass = str_contains($condition, 'poor')
                                             ? 'condition-poor'
-                                            : (str_contains($condition, 'fair') ? 'condition-fair' : '');
+                                            : (str_contains($condition, 'fair') ? 'condition-fair' : 'condition-good');
 
                                         $name = strtolower($item->name);
 
@@ -921,15 +647,12 @@
                                         } elseif (str_contains($name, 'ball')) {
                                             $imageUrl = 'https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=180&q=80';
                                             $imageAlt = 'Sports ball';
-                                        } elseif (str_contains($name, 'band')) {
+                                        } elseif (str_contains($name, 'band') || str_contains($name, 'peluru') || str_contains($name, 'shot put')) {
                                             $imageUrl = 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=180&q=80';
-                                            $imageAlt = 'Strength training';
+                                            $imageAlt = 'Athletics training equipment';
                                         } elseif (str_contains($name, 'mat')) {
                                             $imageUrl = 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=180&q=80';
                                             $imageAlt = 'Exercise mat';
-                                        } elseif (str_contains($name, 'peluru') || str_contains($name, 'shot put')) {
-                                            $imageUrl = 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=180&q=80';
-                                            $imageAlt = 'Athletics training equipment';
                                         } else {
                                             $imageUrl = 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=180&q=80';
                                             $imageAlt = 'Sports equipment';
@@ -940,24 +663,17 @@
                                         <td class="number-cell">{{ $loop->iteration }}</td>
 
                                         <td>
-                                            <img
-                                                class="equipment-image"
-                                                src="{{ $imageUrl }}"
-                                                alt="{{ $imageAlt }}"
+                                            <img class="equipment-image"
+                                                src="{{ $imageUrl }}" alt="{{ $imageAlt }}"
                                                 loading="lazy"
-                                                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-                                            >
-                                            <div
-                                                class="equipment-image image-fallback"
-                                                style="display:none; place-items:center; font-size:25px;"
-                                                aria-hidden="true"
-                                            >🏃</div>
+                                                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                                            <div class="equipment-image image-fallback"
+                                                style="display:none;place-items:center;font-size:25px"
+                                                aria-hidden="true">🏃</div>
                                         </td>
 
                                         <td class="equipment-name">
-                                            <a href="{{ route('equipment.show', $item) }}">
-                                                {{ $item->name }}
-                                            </a>
+                                            <a href="{{ route('equipment.show', $item) }}">{{ $item->name }}</a>
                                         </td>
 
                                         <td>
@@ -968,9 +684,7 @@
 
                                         <td>
                                             <span class="stock-number">{{ $stock }}</span>
-                                            <span class="status {{ $stockClass }}">
-                                                {{ $stockLabel }}
-                                            </span>
+                                            <span class="status {{ $stockClass }}">{{ $stockLabel }}</span>
                                         </td>
 
                                         <td>{{ $minimum }}</td>
@@ -983,33 +697,22 @@
 
                                         <td>
                                             <div class="actions">
-                                                <a href="{{ route('equipment.show', $item) }}" class="button button-dark">
-                                                    ◉ View
-                                                </a>
+                                                <a href="{{ route('equipment.show', $item) }}" class="button button-dark">◉ View</a>
 
                                                 @if ($isAdmin)
-                                                    <a
-                                                        href="{{ route('equipment.edit', $item) }}"
+                                                    <a href="{{ route('equipment.edit', $item) }}"
                                                         class="button button-outline"
                                                         aria-label="Edit {{ $item->name }}"
-                                                        title="Edit equipment"
-                                                    >✎</a>
+                                                        title="Edit equipment">✎</a>
 
-                                                    <form
-                                                        action="{{ route('equipment.destroy', $item) }}"
-                                                        method="POST"
-                                                        class="delete-form"
-                                                        onsubmit="return confirm('Delete this equipment?')"
-                                                    >
+                                                    <form action="{{ route('equipment.destroy', $item) }}"
+                                                        method="POST" class="delete-form"
+                                                        onsubmit="return confirm('Delete this equipment?')">
                                                         @csrf
                                                         @method('DELETE')
-
-                                                        <button
-                                                            type="submit"
-                                                            class="button button-danger"
+                                                        <button type="submit" class="button button-danger"
                                                             aria-label="Delete {{ $item->name }}"
-                                                            title="Delete equipment"
-                                                        >♜</button>
+                                                            title="Delete equipment">♜</button>
                                                     </form>
                                                 @endif
                                             </div>
@@ -1021,20 +724,9 @@
                     </div>
 
                     <div class="table-footer">
-                        <span class="legend">
-                            <span class="legend-dot" style="background:#329464;"></span>
-                            Available
-                        </span>
-
-                        <span class="legend">
-                            <span class="legend-dot" style="background:#F4AD35;"></span>
-                            Low Stock
-                        </span>
-
-                        <span class="legend">
-                            <span class="legend-dot" style="background:#D94343;"></span>
-                            Out of Stock
-                        </span>
+                        <span class="legend"><span class="legend-dot" style="background:#329464"></span>Available</span>
+                        <span class="legend"><span class="legend-dot" style="background:#F4AD35"></span>Low Stock</span>
+                        <span class="legend"><span class="legend-dot" style="background:#D94343"></span>Out of Stock</span>
                     </div>
                 @endif
             </div>
@@ -1053,9 +745,7 @@
                 const keyword = this.value.toLowerCase().trim();
 
                 document.querySelectorAll('.equipment-row').forEach(function (row) {
-                    row.style.display = row.textContent.toLowerCase().includes(keyword)
-                        ? ''
-                        : 'none';
+                    row.style.display = row.textContent.toLowerCase().includes(keyword) ? '' : 'none';
                 });
             });
         }

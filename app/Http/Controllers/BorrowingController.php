@@ -95,17 +95,48 @@ class BorrowingController extends Controller
         return redirect()->route('borrowings.show', $borrowing);
     }
 
-    // Mengembalikan alat dan menambah stok
+    // Athlete mengajukan pengembalian, admin menyelesaikan pengembalian
     public function update(Request $request, Borrowing $borrowing)
     {
+        $user = auth()->user();
+
+        // Proses pengajuan pengembalian oleh athlete
+        if (! $user->isAdmin()) {
+            // Athlete hanya boleh mengajukan pengembalian miliknya sendiri
+            if ((int) $borrowing->user_id !== (int) $user->id) {
+                abort(403, 'You are not authorized to return this borrowing.');
+            }
+
+            // Pastikan peminjaman masih berstatus Borrowed
+            if ($borrowing->status !== 'Borrowed') {
+                return redirect()
+                    ->route('borrowings.index')
+                    ->with('error', 'This borrowing cannot be returned again.');
+            }
+
+            $borrowing->update([
+                'status' => 'Pending Approval',
+            ]);
+
+            // Stok belum ditambah karena menunggu pemeriksaan admin
+            return redirect()
+                ->route('borrowings.index')
+                ->with(
+                    'success',
+                    'Return request submitted successfully. Please hand over the equipment to an administrator.'
+                );
+        }
+
+        // Proses persetujuan pengembalian oleh admin
         DB::transaction(function () use ($borrowing) {
             $lockedBorrowing = Borrowing::whereKey($borrowing->id)
                 ->lockForUpdate()
                 ->firstOrFail();
 
-            if ($lockedBorrowing->status !== 'Borrowed') {
+            // Hanya permintaan yang menunggu persetujuan yang dapat diproses
+            if ($lockedBorrowing->status !== 'Pending Approval') {
                 throw ValidationException::withMessages([
-                    'status' => 'This borrowing has already been returned.',
+                    'status' => 'This borrowing is not awaiting return approval.',
                 ]);
             }
 
@@ -113,6 +144,7 @@ class BorrowingController extends Controller
                 ->lockForUpdate()
                 ->firstOrFail();
 
+            // Stok ditambahkan sekali saat admin menyetujui
             $equipment->increment(
                 'quantity',
                 $lockedBorrowing->quantity
@@ -126,7 +158,7 @@ class BorrowingController extends Controller
 
         return redirect()
             ->route('borrowings.index')
-            ->with('success', 'Equipment returned successfully.');
+            ->with('success', 'Equipment return approved successfully.');
     }
 
     // Riwayat peminjaman tidak dihapus

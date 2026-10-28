@@ -4,15 +4,18 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EquipmentController;
 use Illuminate\Support\Facades\Route;
 
 // Halaman awal
 Route::get('/', function () {
-    return redirect()->route('equipment.index');
+    return auth()->check()
+        ? redirect()->route('dashboard')
+        : redirect()->route('login');
 });
 
-// Register dan login tanpa harus login
+// Register dan login hanya untuk user yang belum login
 Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister'])
         ->name('register');
@@ -28,21 +31,22 @@ Route::middleware('guest')->group(function () {
 // Semua fitur yang membutuhkan login
 Route::middleware('auth')->group(function () {
 
-    // Logout
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
 
-    // Semua user yang login bisa melihat inventory
+    // Dashboard untuk semua user yang login
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
+
+    // Semua user yang login bisa melihat equipment
     Route::get('/equipment', [EquipmentController::class, 'index'])
         ->name('equipment.index');
 
-    // Semua user yang login bisa melihat detail equipment
-    // Parameter equipment hanya boleh berupa angka
     Route::get('/equipment/{equipment}', [EquipmentController::class, 'show'])
         ->whereNumber('equipment')
         ->name('equipment.show');
 
-    // Hanya Admin yang boleh mengelola kategori dan inventory
+    // Fitur khusus admin
     Route::middleware('admin')->group(function () {
 
         // CRUD kategori
@@ -89,10 +93,8 @@ Route::middleware('auth')->group(function () {
         ->whereNumber('borrowing')
         ->name('borrowings.show');
 
-    // Hanya Admin yang boleh memproses pengembalian
-    Route::middleware('admin')->group(function () {
-        Route::put('/borrowings/{borrowing}', [BorrowingController::class, 'update'])
-            ->whereNumber('borrowing')
-            ->name('borrowings.update');
-    });
+    // Athlete mengajukan return, admin menyetujui return
+    Route::put('/borrowings/{borrowing}', [BorrowingController::class, 'update'])
+        ->whereNumber('borrowing')
+        ->name('borrowings.update');
 });
