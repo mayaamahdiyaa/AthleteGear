@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,7 +145,36 @@
 
         .topbar-title { color: var(--muted); font-size: 12px; }
 
-        .user-area { display: flex; align-items: center; gap: 12px; }
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Avatar dan nama user bisa diklik untuk membuka Profile */
+        .profile-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 5px 8px;
+            border-radius: 8px;
+            color: inherit;
+            text-decoration: none;
+            transition: background .2s;
+        }
+
+        .profile-link:hover {
+            background: #F0F2F1;
+        }
+
+        .profile-link:hover .user-info strong {
+            color: var(--red-dark);
+        }
+
+        .profile-link:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 3px;
+        }
 
         .avatar {
             width: 39px;
@@ -157,9 +185,11 @@
             color: white;
             background: var(--charcoal);
             font-weight: 700;
+            flex-shrink: 0;
         }
 
         .user-info strong { display: block; font-size: 12px; }
+
         .user-info span {
             color: var(--muted);
             font-size: 11px;
@@ -418,6 +448,7 @@
         .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
 
         .empty-state { padding: 55px 20px; text-align: center; }
+
         .empty-state h2 {
             margin: 0 0 8px;
             font-family: 'Barlow Condensed', sans-serif;
@@ -445,7 +476,14 @@
             .topbar { min-height: 60px; padding: 12px 15px; }
             .topbar-title { display: none; }
             .user-area { gap: 8px; }
+
+            .profile-link {
+                gap: 8px;
+                padding: 4px;
+            }
+
             .avatar { width: 32px; height: 32px; }
+
             .logout-form { margin-left: 4px; padding-left: 10px; }
             .hero { min-height: 190px; padding: 27px 20px; }
             .hero h1 { font-size: clamp(38px, 9vw, 54px); }
@@ -460,6 +498,8 @@
 
         @media (max-width: 360px) {
             .topbar { flex-wrap: wrap; }
+            .user-info strong { font-size: 11px; }
+            .user-info span { font-size: 10px; }
         }
     </style>
 </head>
@@ -516,12 +556,20 @@
             <div class="topbar-title">ATHLETEGEAR / EQUIPMENT CONTROL</div>
 
             <div class="user-area">
-                <div class="avatar">{{ strtoupper(substr($user->name, 0, 1)) }}</div>
+                <!-- Avatar dan nama user menuju halaman Profile -->
+                <a href="{{ route('profile.show') }}"
+                   class="profile-link"
+                   aria-label="Open profile">
 
-                <div class="user-info">
-                    <strong>{{ $user->name }}</strong>
-                    <span>{{ $user->role }}</span>
-                </div>
+                    <div class="avatar">
+                        {{ strtoupper(substr($user->name ?? 'U', 0, 1)) }}
+                    </div>
+
+                    <div class="user-info">
+                        <strong>{{ $user->name }}</strong>
+                        <span>{{ $user->role }}</span>
+                    </div>
+                </a>
 
                 <form action="{{ route('logout') }}" method="POST" class="logout-form">
                     @csrf

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +52,11 @@
             padding: 0 8px 35px;
         }
 
-        .runner-logo { width: 43px; height: 43px; flex-shrink: 0; }
+        .runner-logo {
+            width: 43px;
+            height: 43px;
+            flex-shrink: 0;
+        }
 
         .brand-name {
             font-family: 'Barlow Condensed', sans-serif;
@@ -90,10 +93,22 @@
         }
 
         .nav-link:hover { background: #30363B; }
-        .nav-link.active { background: var(--red); color: white; }
-        .nav-icon { width: 22px; text-align: center; font-size: 19px; }
 
-        .sidebar-bottom { margin-top: auto; padding: 30px 10px 0; }
+        .nav-link.active {
+            background: var(--red);
+            color: white;
+        }
+
+        .nav-icon {
+            width: 22px;
+            text-align: center;
+            font-size: 19px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding: 30px 10px 0;
+        }
 
         .lane-decoration {
             height: 80px;
@@ -103,8 +118,11 @@
             border-top: 2px solid #FFFFFF55;
             border-bottom: 2px solid #FFFFFF55;
             background: repeating-linear-gradient(
-                105deg, transparent 0, transparent 31px,
-                #FFFFFF24 32px, #FFFFFF24 34px
+                105deg,
+                transparent 0,
+                transparent 31px,
+                #FFFFFF24 32px,
+                #FFFFFF24 34px
             );
         }
 
@@ -122,7 +140,10 @@
             line-height: 1.6;
         }
 
-        .main { min-height: 100vh; margin-left: 238px; }
+        .main {
+            min-height: 100vh;
+            margin-left: 238px;
+        }
 
         .topbar {
             min-height: 68px;
@@ -135,21 +156,56 @@
             border-bottom: 1px solid var(--line);
         }
 
-        .topbar-title { color: var(--muted); font-size: 12px; }
-        .user-area { display: flex; align-items: center; gap: 12px; }
+        .topbar-title {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Avatar dan nama user dapat diklik untuk membuka Profile */
+        .profile-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 5px 8px;
+            border-radius: 8px;
+            color: inherit;
+            text-decoration: none;
+            transition: background .2s;
+        }
+
+        .profile-link:hover { background: #F0F2F1; }
+
+        .profile-link:hover .user-info strong {
+            color: var(--red-dark);
+        }
+
+        .profile-link:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 3px;
+        }
 
         .avatar {
             width: 39px;
             height: 39px;
             display: grid;
             place-items: center;
+            flex-shrink: 0;
             border-radius: 50%;
             color: white;
             background: var(--charcoal);
             font-weight: 700;
         }
 
-        .user-info strong { display: block; font-size: 12px; }
+        .user-info strong {
+            display: block;
+            font-size: 12px;
+        }
 
         .user-info span {
             color: var(--muted);
@@ -184,7 +240,12 @@
             padding: 35px 38px;
             color: white;
             background:
-                linear-gradient(90deg, rgba(20,25,29,.72), rgba(20,25,29,.40) 55%, rgba(20,25,29,.15)),
+                linear-gradient(
+                    90deg,
+                    rgba(20,25,29,.72),
+                    rgba(20,25,29,.40) 55%,
+                    rgba(20,25,29,.15)
+                ),
                 url("/images/Track%20Banner.jpg") center / cover no-repeat;
         }
 
@@ -202,7 +263,10 @@
             pointer-events: none;
         }
 
-        .hero-copy { position: relative; z-index: 1; }
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+        }
 
         .eyebrow {
             margin: 0 0 8px;
@@ -223,7 +287,10 @@
             text-transform: uppercase;
         }
 
-        .hero-subtitle { margin: 14px 0 0; font-size: 14px; }
+        .hero-subtitle {
+            margin: 14px 0 0;
+            font-size: 14px;
+        }
 
         .hero-note {
             position: relative;
@@ -257,8 +324,17 @@
             line-height: 1.5;
         }
 
-        .flash.success { color: #286746; background: #EDF7F0; border-color: #CBE4D2; }
-        .flash.error { color: #A72C35; background: #FFF0F0; border-color: #F0CACA; }
+        .flash.success {
+            color: #286746;
+            background: #EDF7F0;
+            border-color: #CBE4D2;
+        }
+
+        .flash.error {
+            color: #A72C35;
+            background: #FFF0F0;
+            border-color: #F0CACA;
+        }
 
         .toolbar {
             display: flex;
@@ -302,10 +378,24 @@
             white-space: nowrap;
         }
 
-        .button-primary { color: white; background: var(--red); }
+        .button-primary {
+            color: white;
+            background: var(--red);
+        }
+
         .button-primary:hover { background: var(--red-dark); }
-        .button-outline { color: var(--text); background: white; border-color: #D4DADD; }
-        .button-danger { color: #C5323B; background: white; border-color: #EFC2C5; }
+
+        .button-outline {
+            color: var(--text);
+            background: white;
+            border-color: #D4DADD;
+        }
+
+        .button-danger {
+            color: #C5323B;
+            background: white;
+            border-color: #EFC2C5;
+        }
 
         .admin-note {
             margin: 7px 0 0;
@@ -348,8 +438,16 @@
 
         .inventory-table tbody tr:last-child td { border-bottom: 0; }
         .inventory-table tbody tr:hover { background: #FCFBF8; }
-        .number-cell { color: #68747C; font-weight: 600; }
-        .category-name { min-width: 150px; font-weight: 700; }
+
+        .number-cell {
+            color: #68747C;
+            font-weight: 600;
+        }
+
+        .category-name {
+            min-width: 150px;
+            font-weight: 700;
+        }
 
         .category-description {
             min-width: 180px;
@@ -369,9 +467,22 @@
             white-space: nowrap;
         }
 
-        .actions { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
-        .actions .button { min-height: 32px; padding: 7px 9px; }
-        .delete-form { display: inline; margin: 0; }
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .actions .button {
+            min-height: 32px;
+            padding: 7px 9px;
+        }
+
+        .delete-form {
+            display: inline;
+            margin: 0;
+        }
 
         .table-footer {
             display: flex;
@@ -383,10 +494,29 @@
             background: #FDFDFC;
         }
 
-        .legend { display: flex; align-items: center; gap: 7px; color: #68747C; font-size: 10px; }
-        .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
-        .empty-state { padding: 55px 20px; text-align: center; }
-        .empty-icon { margin-bottom: 12px; font-size: 38px; }
+        .legend {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #68747C;
+            font-size: 10px;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .empty-state {
+            padding: 55px 20px;
+            text-align: center;
+        }
+
+        .empty-icon {
+            margin-bottom: 12px;
+            font-size: 38px;
+        }
 
         .empty-state h2 {
             margin: 0 0 8px;
@@ -395,8 +525,17 @@
             text-transform: uppercase;
         }
 
-        .empty-state p { color: var(--muted); font-size: 13px; }
-        .page-footer { padding-top: 22px; color: #899198; font-size: 10px; text-align: center; }
+        .empty-state p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .page-footer {
+            padding-top: 22px;
+            color: #899198;
+            font-size: 10px;
+            text-align: center;
+        }
 
         @media (max-width: 1100px) {
             .sidebar { width: 205px; }
@@ -406,222 +545,332 @@
         }
 
         @media (max-width: 760px) {
-            .sidebar { position: static; width: 100%; padding: 13px 15px; }
+            .sidebar {
+                position: static;
+                width: 100%;
+                padding: 13px 15px;
+            }
+
             .brand { padding: 0 0 13px; }
             .nav-label, .sidebar-bottom { display: none; }
-            .nav { display: flex; gap: 6px; overflow-x: auto; }
-            .nav-link { flex-shrink: 0; gap: 7px; padding: 10px 12px; font-size: 11px; }
+
+            .nav {
+                display: flex;
+                gap: 6px;
+                overflow-x: auto;
+            }
+
+            .nav-link {
+                flex-shrink: 0;
+                gap: 7px;
+                padding: 10px 12px;
+                font-size: 11px;
+            }
+
             .main { margin-left: 0; }
-            .topbar { min-height: 60px; padding: 12px 15px; }
+
+            .topbar {
+                min-height: 60px;
+                padding: 12px 15px;
+            }
+
             .topbar-title { display: none; }
             .user-area { gap: 8px; }
-            .avatar { width: 32px; height: 32px; }
-            .logout-form { margin-left: 4px; padding-left: 10px; }
-            .hero { min-height: 190px; padding: 27px 20px; }
+
+            .profile-link {
+                gap: 8px;
+                padding: 4px;
+            }
+
+            .avatar {
+                width: 32px;
+                height: 32px;
+            }
+
+            .logout-form {
+                margin-left: 4px;
+                padding-left: 10px;
+            }
+
+            .hero {
+                min-height: 190px;
+                padding: 27px 20px;
+            }
+
             .hero h1 { font-size: clamp(38px, 9vw, 54px); }
             .hero-note { display: none; }
             .content { padding: 18px 12px 28px; }
-            .toolbar { align-items: stretch; flex-direction: column; gap: 12px; margin-bottom: 17px; }
+
+            .toolbar {
+                align-items: stretch;
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 17px;
+            }
+
             .search-form { width: 100%; }
             .toolbar-action { align-self: flex-start; }
             .admin-note { text-align: left; }
+        }
+
+        @media (max-width: 360px) {
+            .topbar { flex-wrap: wrap; }
+            .user-info strong { font-size: 11px; }
+            .user-info span { font-size: 10px; }
         }
     </style>
 </head>
 
 <body>
-@php
-    $user = auth()->user();
-    $isAdmin = $user && $user->isAdmin();
-@endphp
+    @php
+        $user = auth()->user();
+        $isAdmin = $user && $user->isAdmin();
+    @endphp
 
-<aside class="sidebar">
-    <a href="{{ route('dashboard') }}" class="brand" aria-label="AthleteGear Dashboard">
-        <svg class="runner-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="43" cy="10" r="6" fill="white"/>
-            <path d="M35 19L25 29L37 35L45 25L53 30" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M25 29L15 24L8 31" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M37 35L27 46L13 52" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M37 35L46 44L57 46" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M30 21L42 18" stroke="#D94343" stroke-width="4" stroke-linecap="round"/>
-        </svg>
-        <span class="brand-name">Athlete<span>Gear</span></span>
-    </a>
-
-    <div class="nav-label">WORKSPACE</div>
-
-    <nav class="nav" aria-label="Main navigation">
-        <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-            <span class="nav-icon">▦</span> Dashboard
+    <aside class="sidebar">
+        <a href="{{ route('dashboard') }}" class="brand" aria-label="AthleteGear Dashboard">
+            <svg class="runner-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="43" cy="10" r="6" fill="white"/>
+                <path d="M35 19L25 29L37 35L45 25L53 30" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M25 29L15 24L8 31" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M37 35L27 46L13 52" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M37 35L46 44L57 46" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M30 21L42 18" stroke="#D94343" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            <span class="brand-name">Athlete<span>Gear</span></span>
         </a>
-        <a href="{{ route('equipment.index') }}" class="nav-link {{ request()->routeIs('equipment.*') ? 'active' : '' }}">
-            <span class="nav-icon">▤</span> Equipment
-        </a>
-        @if ($isAdmin)
-            <a href="{{ route('categories.index') }}" class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
-                <span class="nav-icon">▧</span> Categories
+
+        <div class="nav-label">WORKSPACE</div>
+
+        <nav class="nav" aria-label="Main navigation">
+            <a href="{{ route('dashboard') }}"
+               class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <span class="nav-icon">▦</span> Dashboard
             </a>
-        @endif
-        <a href="{{ route('borrowings.index') }}" class="nav-link {{ request()->routeIs('borrowings.*') ? 'active' : '' }}">
-            <span class="nav-icon">◷</span> Borrowings
-        </a>
-    </nav>
 
-    <div class="sidebar-bottom">
-        <div class="lane-decoration"></div>
-        <strong>BETTER GEAR.<br>BETTER PERFORMANCE.</strong>
-        <p>Built for athletes. Ready for every training session.</p>
-    </div>
-</aside>
-
-<main class="main">
-    <header class="topbar">
-        <div class="topbar-title">ATHLETEGEAR / CATEGORY CONTROL</div>
-        <div class="user-area">
-            <div class="avatar">{{ strtoupper(substr($user->name, 0, 1)) }}</div>
-            <div class="user-info">
-                <strong>{{ $user->name }}</strong>
-                <span>{{ $user->role }}</span>
-            </div>
-            <form action="{{ route('logout') }}" method="POST" class="logout-form">
-                @csrf
-                <button type="submit" class="logout-button">↗ Logout</button>
-            </form>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="hero-copy">
-            <p class="eyebrow">ATHLETEGEAR / PERFORMANCE EQUIPMENT</p>
-            <h1>Equipment<br>Categories</h1>
-            <p class="hero-subtitle">Organize your gear. Train smarter.</p>
-        </div>
-        <div class="hero-note">
-            EVERY ITEM<br>HAS ITS PLACE<br>STAY ORGANIZED
-            <span></span>
-        </div>
-    </section>
-
-    <section class="content">
-        @if (session('success'))
-            <div class="flash success" role="status">✓ {{ session('success') }}</div>
-        @endif
-
-        @if (session('error'))
-            <div class="flash error" role="alert">{{ session('error') }}</div>
-        @endif
-
-        @if ($errors->any())
-            <div class="flash error" role="alert">
-                <strong>Please check the following:</strong>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <div class="toolbar">
-            <form class="search-form" role="search" onsubmit="return false;">
-                <input class="search-input" type="search" id="categorySearch"
-                    placeholder="⌕ Search category by name or description..."
-                    aria-label="Search categories">
-            </form>
+            <a href="{{ route('equipment.index') }}"
+               class="nav-link {{ request()->routeIs('equipment.*') ? 'active' : '' }}">
+                <span class="nav-icon">▤</span> Equipment
+            </a>
 
             @if ($isAdmin)
-                <div class="toolbar-action">
-                    <a href="{{ route('categories.create') }}" class="button button-primary">
-                        <span style="font-size:17px;">+</span> Add Category
-                    </a>
-                    <p class="admin-note">♟ Admin only</p>
+                <a href="{{ route('categories.index') }}"
+                   class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
+                    <span class="nav-icon">▧</span> Categories
+                </a>
+            @endif
+
+            <a href="{{ route('borrowings.index') }}"
+               class="nav-link {{ request()->routeIs('borrowings.*') ? 'active' : '' }}">
+                <span class="nav-icon">◷</span> Borrowings
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="lane-decoration"></div>
+            <strong>BETTER GEAR.<br>BETTER PERFORMANCE.</strong>
+            <p>Built for athletes. Ready for every training session.</p>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div class="topbar-title">ATHLETEGEAR / CATEGORY CONTROL</div>
+
+            <div class="user-area">
+                <a href="{{ route('profile.show') }}"
+                   class="profile-link"
+                   aria-label="Open profile">
+                    <div class="avatar">
+                        {{ strtoupper(substr($user->name ?? 'U', 0, 1)) }}
+                    </div>
+
+                    <div class="user-info">
+                        <strong>{{ $user->name }}</strong>
+                        <span>{{ $user->role }}</span>
+                    </div>
+                </a>
+
+                <form action="{{ route('logout') }}" method="POST" class="logout-form">
+                    @csrf
+                    <button type="submit" class="logout-button">↗ Logout</button>
+                </form>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">ATHLETEGEAR / PERFORMANCE EQUIPMENT</p>
+                <h1>Equipment<br>Categories</h1>
+                <p class="hero-subtitle">Organize your gear. Train smarter.</p>
+            </div>
+
+            <div class="hero-note">
+                EVERY ITEM<br>
+                HAS ITS PLACE<br>
+                STAY ORGANIZED
+                <span></span>
+            </div>
+        </section>
+
+        <section class="content">
+            @if (session('success'))
+                <div class="flash success" role="status">
+                    ✓ {{ session('success') }}
                 </div>
             @endif
-        </div>
 
-        <div class="table-card">
-            @if ($categories->isEmpty())
-                <div class="empty-state">
-                    <div class="empty-icon">▦</div>
-                    <h2>No Categories Yet</h2>
-                    <p>Create your first category to organize the equipment inventory.</p>
-                    @if ($isAdmin)
-                        <a href="{{ route('categories.create') }}" class="button button-primary">+ Add First Category</a>
-                    @endif
+            @if (session('error'))
+                <div class="flash error" role="alert">
+                    {{ session('error') }}
                 </div>
-            @else
-                <div class="table-scroll">
-                    <table class="inventory-table">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Category Name</th>
-                                <th>Description</th>
-                                @if ($isAdmin)
-                                    <th>Actions</th>
-                                @endif
-                            </tr>
-                        </thead>
-                        <tbody id="categoryTableBody">
-                            @foreach ($categories as $category)
-                                <tr class="category-row">
-                                    <td class="number-cell">{{ $loop->iteration }}</td>
-                                    <td class="category-name">
-                                        <span class="category-badge">▦ {{ $category->name }}</span>
-                                    </td>
-                                    <td class="category-description">
-                                        {{ $category->description ?: 'No description provided.' }}
-                                    </td>
-                                    @if ($isAdmin)
-                                        <td>
-                                            <div class="actions">
-                                                <a href="{{ route('categories.edit', $category) }}"
-                                                   class="button button-outline"
-                                                   title="Edit category"
-                                                   aria-label="Edit {{ $category->name }}">✎ Edit</a>
+            @endif
 
-                                                <form action="{{ route('categories.destroy', $category) }}"
-                                                      method="POST" class="delete-form"
-                                                      onsubmit="return confirm('Delete this category?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="button button-danger"
-                                                        title="Delete category"
-                                                        aria-label="Delete {{ $category->name }}">♜ Delete</button>
-                                                </form>
-                                            </div>
-                                        </td>
+            @if ($errors->any())
+                <div class="flash error" role="alert">
+                    <strong>Please check the following:</strong>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <div class="toolbar">
+                <form class="search-form" role="search" onsubmit="return false;">
+                    <input
+                        class="search-input"
+                        type="search"
+                        id="categorySearch"
+                        placeholder="⌕ Search category by name or description..."
+                        aria-label="Search categories">
+                </form>
+
+                @if ($isAdmin)
+                    <div class="toolbar-action">
+                        <a href="{{ route('categories.create') }}" class="button button-primary">
+                            <span style="font-size:17px;">+</span> Add Category
+                        </a>
+                        <p class="admin-note">♟ Admin only</p>
+                    </div>
+                @endif
+            </div>
+
+            <div class="table-card">
+                @if ($categories->isEmpty())
+                    <div class="empty-state">
+                        <div class="empty-icon">▦</div>
+                        <h2>No Categories Yet</h2>
+                        <p>Create your first category to organize the equipment inventory.</p>
+
+                        @if ($isAdmin)
+                            <a href="{{ route('categories.create') }}" class="button button-primary">
+                                + Add First Category
+                            </a>
+                        @endif
+                    </div>
+                @else
+                    <div class="table-scroll">
+                        <table class="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Category Name</th>
+                                    <th>Description</th>
+                                    @if ($isAdmin)
+                                        <th>Actions</th>
                                     @endif
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
 
-                <div class="table-footer">
-                    <span class="legend"><span class="legend-dot" style="background:#D94343;"></span>Equipment Categories</span>
-                    <span class="legend">Total categories: <strong>{{ $categories->count() }}</strong></span>
-                </div>
-            @endif
-        </div>
+                            <tbody id="categoryTableBody">
+                                @foreach ($categories as $category)
+                                    <tr class="category-row">
+                                        <td class="number-cell">
+                                            {{ $loop->iteration }}
+                                        </td>
 
-        <footer class="page-footer">ATHLETEGEAR · TRACK & FIELD EQUIPMENT MANAGEMENT</footer>
-    </section>
-</main>
+                                        <td class="category-name">
+                                            <span class="category-badge">
+                                                ▦ {{ $category->name }}
+                                            </span>
+                                        </td>
 
-<script>
-    // Search kategori berdasarkan nama atau deskripsi.
-    const categorySearch = document.getElementById('categorySearch');
+                                        <td class="category-description">
+                                            {{ $category->description ?: 'No description provided.' }}
+                                        </td>
 
-    if (categorySearch) {
-        categorySearch.addEventListener('input', function () {
-            const keyword = this.value.toLowerCase().trim();
+                                        @if ($isAdmin)
+                                            <td>
+                                                <div class="actions">
+                                                    <a
+                                                        href="{{ route('categories.edit', $category) }}"
+                                                        class="button button-outline"
+                                                        title="Edit category"
+                                                        aria-label="Edit {{ $category->name }}">
+                                                        ✎ Edit
+                                                    </a>
 
-            document.querySelectorAll('.category-row').forEach(function (row) {
-                row.style.display = row.textContent.toLowerCase().includes(keyword) ? '' : 'none';
+                                                    <form
+                                                        action="{{ route('categories.destroy', $category) }}"
+                                                        method="POST"
+                                                        class="delete-form"
+                                                        onsubmit="return confirm('Delete this category?')">
+                                                        @csrf
+                                                        @method('DELETE')
+
+                                                        <button
+                                                            type="submit"
+                                                            class="button button-danger"
+                                                            title="Delete category"
+                                                            aria-label="Delete {{ $category->name }}">
+                                                            ♜ Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-footer">
+                        <span class="legend">
+                            <span class="legend-dot" style="background:#D94343;"></span>
+                            Equipment Categories
+                        </span>
+
+                        <span class="legend">
+                            Total categories:
+                            <strong>{{ $categories->count() }}</strong>
+                        </span>
+                    </div>
+                @endif
+            </div>
+
+            <footer class="page-footer">
+                ATHLETEGEAR · TRACK & FIELD EQUIPMENT MANAGEMENT
+            </footer>
+        </section>
+    </main>
+
+    <script>
+        // Search kategori berdasarkan nama atau deskripsi.
+        const categorySearch = document.getElementById('categorySearch');
+
+        if (categorySearch) {
+            categorySearch.addEventListener('input', function () {
+                const keyword = this.value.toLowerCase().trim();
+
+                document.querySelectorAll('.category-row').forEach(function (row) {
+                    row.style.display =
+                        row.textContent.toLowerCase().includes(keyword) ? '' : 'none';
+                });
             });
-        });
-    }
-</script>
+        }
+    </script>
 </body>
 </html>

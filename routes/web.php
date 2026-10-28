@@ -6,6 +6,7 @@ use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // Halaman awal
@@ -14,6 +15,15 @@ Route::get('/', function () {
         ? redirect()->route('dashboard')
         : redirect()->route('login');
 });
+
+
+// Profile untuk semua user yang login
+Route::get('/profile', [ProfileController::class, 'show'])
+    ->name('profile.show');
+
+Route::put('/profile', [ProfileController::class, 'update'])
+    ->name('profile.update');
+
 
 // Register dan login hanya untuk user yang belum login
 Route::middleware('guest')->group(function () {
@@ -37,6 +47,13 @@ Route::middleware('auth')->group(function () {
     // Dashboard untuk semua user yang login
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+
+    // Profile untuk semua user yang login
+    Route::get('/profile', [ProfileController::class, 'show'])
+        ->name('profile.show');
+
+    Route::put('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
 
     // Semua user yang login bisa melihat equipment
     Route::get('/equipment', [EquipmentController::class, 'index'])

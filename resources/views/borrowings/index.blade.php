@@ -84,9 +84,32 @@
         .topbar-title { color: var(--muted); font-size: 12px; }
         .user-area { display: flex; align-items: center; gap: 12px; }
 
+        /* Profile link */
+        .profile-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 5px 8px;
+            border-radius: 8px;
+            color: inherit;
+            text-decoration: none;
+            transition: background .2s;
+        }
+
+        .profile-link:hover { background: #F0F2F1; }
+
+        .profile-link .user-info strong { transition: color .2s; }
+        .profile-link:hover .user-info strong { color: var(--red-dark); }
+
+        .profile-link:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
         .avatar {
             width: 39px; height: 39px; display: grid; place-items: center;
             border-radius: 50%; color: white; background: var(--charcoal); font-weight: 700;
+            flex-shrink: 0;
         }
 
         .user-info strong { display: block; font-size: 12px; }
@@ -98,6 +121,8 @@
             border: 0; background: transparent; color: var(--red-dark);
             cursor: pointer; font-size: 12px; font-weight: 700;
         }
+
+        .logout-button:hover { color: var(--red); }
 
         .hero {
             position: relative; isolation: isolate; min-height: 230px; display: flex;
@@ -241,6 +266,7 @@
             .topbar { min-height: 60px; padding: 12px 15px; }
             .topbar-title { display: none; }
             .user-area { gap: 8px; }
+            .profile-link { gap: 8px; padding: 4px; }
             .avatar { width: 32px; height: 32px; }
             .logout-form { margin-left: 4px; padding-left: 10px; }
             .hero { min-height: 190px; padding: 27px 20px; }
@@ -303,12 +329,22 @@
 <main class="main">
     <header class="topbar">
         <div class="topbar-title">ATHLETEGEAR / BORROWING CONTROL</div>
+
         <div class="user-area">
-            <div class="avatar">{{ strtoupper(substr($user->name, 0, 1)) }}</div>
-            <div class="user-info">
-                <strong>{{ $user->name }}</strong>
-                <span>{{ $user->role }}</span>
-            </div>
+            <a href="{{ route('profile.show') }}"
+               class="profile-link"
+               aria-label="Open profile">
+
+                <div class="avatar">
+                    {{ strtoupper(substr($user->name ?? 'U', 0, 1)) }}
+                </div>
+
+                <div class="user-info">
+                    <strong>{{ $user->name }}</strong>
+                    <span>{{ $user->role }}</span>
+                </div>
+            </a>
+
             <form action="{{ route('logout') }}" method="POST" class="logout-form">
                 @csrf
                 <button type="submit" class="logout-button">↗ Logout</button>

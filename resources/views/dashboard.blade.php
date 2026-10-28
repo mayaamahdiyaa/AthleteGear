@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -156,11 +157,33 @@
             gap: 12px;
         }
 
+        /* Avatar dan nama bisa diklik untuk membuka halaman Profile. */
+        .profile-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 5px 8px;
+            border-radius: 8px;
+            color: inherit;
+            text-decoration: none;
+            transition: background .2s;
+        }
+
+        .profile-link:hover { background: #F0F2F1; }
+
+        .profile-link:hover .user-info strong { color: var(--red-dark); }
+
+        .profile-link:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 3px;
+        }
+
         .avatar {
             width: 39px;
             height: 39px;
             display: grid;
             place-items: center;
+            flex-shrink: 0;
             border-radius: 50%;
             color: white;
             background: var(--charcoal);
@@ -176,7 +199,7 @@
         }
 
         .logout-form {
-            margin-left: 15px;
+            margin-left: 8px;
             padding-left: 18px;
             border-left: 1px solid var(--line);
         }
@@ -190,8 +213,6 @@
             font-weight: 700;
         }
 
-        /* Banner dibuat sama seperti halaman Equipment:
-           berada langsung di bawah topbar dan memenuhi lebar main. */
         .hero {
             position: relative;
             isolation: isolate;
@@ -276,7 +297,6 @@
             background: var(--red);
         }
 
-        /* Padding hanya berlaku untuk isi dashboard, bukan banner. */
         .content { padding: 25px 30px 40px; }
 
         .flash {
@@ -524,10 +544,10 @@
             .topbar { min-height: 60px; padding: 12px 15px; }
             .topbar-title { display: none; }
             .user-area { gap: 8px; }
+            .profile-link { gap: 8px; padding: 4px; }
             .avatar { width: 32px; height: 32px; }
             .logout-form { margin-left: 4px; padding-left: 10px; }
 
-            /* Ukuran banner mengikuti Equipment pada tampilan mobile. */
             .hero {
                 min-height: 190px;
                 padding: 27px 20px;
@@ -550,6 +570,8 @@
             .stats { grid-template-columns: 1fr; }
             .topbar { flex-wrap: wrap; }
             .hero h1 { font-size: 36px; }
+            .user-info strong { font-size: 11px; }
+            .logout-form { padding-left: 7px; }
         }
     </style>
 </head>
@@ -607,12 +629,16 @@
             <div class="topbar-title">ATHLETEGEAR / PERFORMANCE DASHBOARD</div>
 
             <div class="user-area">
-                <div class="avatar">{{ strtoupper(substr($user->name, 0, 1)) }}</div>
+                <a href="{{ route('profile.show') }}" class="profile-link" aria-label="Open profile">
+                    <div class="avatar">
+                        {{ strtoupper(substr($user->name ?? 'U', 0, 1)) }}
+                    </div>
 
-                <div class="user-info">
-                    <strong>{{ $user->name }}</strong>
-                    <span>{{ $user->role }}</span>
-                </div>
+                    <div class="user-info">
+                        <strong>{{ $user->name }}</strong>
+                        <span>{{ $user->role }}</span>
+                    </div>
+                </a>
 
                 <form action="{{ route('logout') }}" method="POST" class="logout-form">
                     @csrf
@@ -621,7 +647,6 @@
             </div>
         </header>
 
-        {{-- Banner sekarang berada di luar .content agar lebarnya sama seperti Equipment. --}}
         <section class="hero">
             <div class="hero-copy">
                 <p class="eyebrow">ATHLETEGEAR / TRACK & FIELD MANAGEMENT</p>
@@ -649,11 +674,15 @@
 
         <div class="content">
             @if (session('success'))
-                <div class="flash success" role="status">✓ {{ session('success') }}</div>
+                <div class="flash success" role="status">
+                    ✓ {{ session('success') }}
+                </div>
             @endif
 
             @if (session('error'))
-                <div class="flash error" role="alert">{{ session('error') }}</div>
+                <div class="flash error" role="alert">
+                    {{ session('error') }}
+                </div>
             @endif
 
             @if ($errors->any())
