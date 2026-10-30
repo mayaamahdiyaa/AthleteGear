@@ -26,6 +26,17 @@ The following mechanisms are implemented:
 
 These mechanisms help protect user accounts and manage authenticated sessions.
 
+#### Seeded Default Accounts
+
+The `UserSeeder` (`database/seeders/UserSeeder.php`) creates two accounts for local development:
+
+- `admin@athletegear.test` with role `admin`.
+- `athlete@athletegear.test` with role `athlete`.
+
+Both accounts use the fixed password `password`. The seeder uses `firstOrCreate`, so re-running it does not duplicate accounts or reset existing passwords.
+
+Because these credentials are public in the repository, they must be changed or removed before deployment. Seeding should not be run against a production database.
+
 ### 3. Authorization and Role-Based Access Control
 
 AthleteGear separates access between administrators and athletes.
@@ -42,6 +53,8 @@ Borrowing access is also checked in the controller:
 - Athletes cannot access another athlete's borrowing details.
 - Athletes can only submit a return request for their own borrowing transaction.
 - Return processing is restricted to administrators.
+
+The shared sidebar component (`resources/views/components/sidebar.blade.php`) hides the Categories link from non-admin users. This is a convenience only: hiding a link in the interface is not an access control mechanism, and the actual protection comes from the `AdminMiddleware` on the corresponding routes.
 
 These checks reduce the risk of unauthorized access to protected pages and other users' transaction data.
 
@@ -136,7 +149,9 @@ Because these fields are fillable, controllers must ensure that untrusted reques
 
 In the borrowing controller, the authenticated user's ID and the initial borrowing status are assigned by the application rather than taken directly from user-submitted values. Return status changes are also handled through controller logic.
 
-This approach helps prevent users from manipulating sensitive transaction fields through submitted form data.
+The `User` model includes `role` among its fillable attributes so that account provisioning code (such as the `UserSeeder`) can assign roles. The registration and profile controllers never pass request input directly for this field: registration creates users from explicitly selected validated values (`name`, `email`, `password`) only, and the profile update is limited to `name` and `email`. As a result, submitted form data cannot be used to self-assign the `admin` role.
+
+This approach helps prevent users from manipulating sensitive transaction fields or privilege-related fields through submitted form data.
 
 ### 9. Session Management
 
@@ -176,9 +191,10 @@ These are deployment recommendations and should be checked against the actual pr
 
 The implemented authentication, validation, authorization, CSRF protection, and transaction controls provide a foundation for application security. However, additional checks are recommended before production use:
 
+- Change or remove the seeded default accounts (`admin@athletegear.test` and `athlete@athletegear.test`), and do not run seeders against a production database.
 - Verify that all administrator routes consistently use the administrator middleware.
 - Review all Blade forms and state-changing requests to ensure CSRF protection is present.
-- Review model fillable attributes and controller usage to prevent unintended mass assignment.
+- Review model fillable attributes and controller usage to prevent unintended mass assignment, especially since the `User` model includes `role`.
 - Configure secure session cookies and HTTPS in production.
 - Test authorization with both administrator and athlete accounts.
 - Review error handling and logs to ensure sensitive information is not exposed.

@@ -6,6 +6,7 @@ AthleteGear is a web-based sports equipment management system built with Laravel
 
 - User authentication and session management
 - Role-based access for administrators and athletes
+- Role-aware navigation sidebar (the Categories link is only visible to administrators)
 - Equipment management (create, view, update, and delete)
 - Equipment category management
 - Borrowing transaction management
@@ -14,17 +15,17 @@ AthleteGear is a web-based sports equipment management system built with Laravel
 
 ## Tech Stack
 
-- **Backend:** PHP and Laravel
-- **Frontend:** Blade templates, HTML, CSS, and JavaScript
-- **Database:** MariaDB/MySQL
+- **Backend:** PHP 8.2+ and Laravel 12
+- **Frontend:** Blade templates with external CSS built by Vite, plus JavaScript for in-page interactions
+- **Database:** MySQL or MariaDB (also compatible with MySQL-compatible services such as TiDB Cloud)
 - **Local Development:** XAMPP and Composer
-- **Frontend Tooling:** Node.js and npm
+- **Frontend Tooling:** Node.js, npm, and Vite
 
 ## Database Structure
 
 The application uses four main relational tables:
 
-- `users`: Stores user accounts and roles.
+- `users`: Stores user accounts. The `role` column holds `admin` or `athlete` and defaults to `athlete`.
 - `categories`: Stores equipment categories.
 - `equipment`: Stores sports equipment and stock information.
 - `borrowings`: Stores equipment borrowing transactions.
@@ -113,26 +114,41 @@ DB_PASSWORD=
 
 Adjust the username and password if your local database uses different credentials.
 
-### 5. Import the Database
+### 5. Run Migrations and Seed the Database
 
-Import `database/athletegear.sql` into the `athletegear` database using phpMyAdmin or the MySQL command line.
+Create the database tables and seed the default accounts:
 
-**Important:** Back up any existing database before importing. If the SQL file contains table-drop statements, importing it may replace existing tables and data.
+```bash
+php artisan migrate
+php artisan db:seed
+```
 
-If the SQL file is unavailable, verify the project's migrations and setup instructions before creating the database structure.
+The `UserSeeder` creates two accounts (see [Demo Accounts](#demo-accounts)). It uses `firstOrCreate`, so re-running the seeder is safe and will not duplicate accounts or reset existing passwords.
 
-### 6. Run the Application
+Alternatively, you can import the SQL export at `database/athletegear.sql` if it is available. **Important:** Back up any existing database before importing, as the export may contain table-drop statements that replace existing data.
+
+### 6. Build the Frontend Assets
+
+All styles are external CSS files compiled by Vite. Build them before starting the application:
+
+```bash
+npm run build
+```
+
+For active development, run the Vite dev server in a separate terminal instead (it watches for changes and reloads automatically):
+
+```bash
+npm run dev
+```
+
+Re-run `npm run build` after changing any CSS file, or the served pages will use the old styles.
+
+### 7. Run the Application
 
 Start the Laravel development server:
 
 ```bash
 php artisan serve
-```
-
-If the project uses Vite for frontend assets, open another terminal and run:
-
-```bash
-npm run dev
 ```
 
 Open the local URL displayed by Laravel, typically `http://127.0.0.1:8000`.
@@ -145,31 +161,65 @@ Use `.env.example` as the configuration template and set the appropriate values 
 
 Do not commit `.env`, real passwords, API keys, or other sensitive credentials to the repository.
 
-## Demo Account
+## Demo Accounts
 
-Use the demo account credentials provided separately by the project owner or instructor.
+The database seeder (`php artisan db:seed`) creates two accounts for local development:
+
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | `admin@athletegear.test` | `password` |
+| Athlete | `athlete@athletegear.test` | `password` |
+
+Change or remove these accounts before deploying to a production environment.
+
+## Frontend Structure
+
+All page styles are external CSS files loaded through Vite (`@vite` in each Blade view). There are no inline `<style>` blocks in the views.
+
+- `resources/css/app.css` — Tailwind CSS entry (used by the landing and profile pages).
+- `resources/css/shared.css` — shared styles used across pages (design tokens, sidebar, topbar, buttons, tables, badges, flash messages).
+- `resources/css/pages/*.css` — page-specific styles, one file per view (e.g. `dashboard.css`, `equipment-index.css`).
+- `resources/views/components/sidebar.blade.php` — shared sidebar component, used in the views via `<x-sidebar />`. The active menu item follows the current route, and the Categories link is only shown to administrators.
+
+When editing styles: change the relevant file under `resources/css/`, then run `npm run build` (or keep `npm run dev` running during development). If you add a new page CSS file, also add it to the `input` list in `vite.config.js` and reference it from the view with `@vite`.
 
 ## Project Structure
 
 ```text
 AthleteGear/
-├── app/                 # Application models, controllers, and logic
+├── app/                 # Models, controllers, and middleware
 ├── database/
 │   ├── migrations/      # Database migrations
-│   ├── seeders/         # Database seeders
+│   ├── seeders/         # Database seeders (UserSeeder: admin & athlete accounts)
 │   └── athletegear.sql  # Database export, if included
-├── public/              # Public assets and entry point
+├── public/              # Public assets and entry point (built assets in public/build)
 ├── resources/
+│   ├── css/             # External CSS (app.css, shared.css, pages/*.css)
+│   ├── js/              # Frontend JavaScript
 │   └── views/           # Blade templates
+│       └── components/  # Reusable Blade components (sidebar)
 ├── routes/
 │   └── web.php          # Web routes
+├── tests/               # Automated tests (PHPUnit)
+├── vite.config.js       # Vite build configuration (CSS/JS entries)
 ├── .env.example         # Environment configuration template
 ├── composer.json        # PHP dependencies and scripts
 ├── package.json         # Frontend dependencies and scripts
-└── README.md            # Project documentation
+├── README.md            # Project documentation
+└── SECURITY_NOTES.md    # Security documentation
 ```
 
 The actual project structure may contain additional files and directories.
+
+## Testing
+
+Run the automated tests with:
+
+```bash
+php artisan test
+```
+
+The view layer is covered by `tests/Feature/ViewRefactorSmokeTest.php`, which verifies that every page renders without inline styles, loads the external CSS bundle, and shows the correct sidebar (including hiding Categories from non-admin users). This test requires a frontend build (`npm run build`) and skips itself if no build output exists.
 
 ## License
 

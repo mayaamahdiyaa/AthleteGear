@@ -1,0 +1,296 @@
+/* login.css — CSS khusus halaman auth/login.blade.php (diekstrak dari <style>) */
+
+:root {
+    --red: #D94343;
+    --dark-red: #B92E35;
+    --charcoal: #202428;
+    --cream: #F7F6F2;
+    --text: #26323A;
+    --muted: #74808A;
+    --line: #E4E6E4;
+    --green: #487A59;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+}
+
+.auth-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(420px, 0.85fr);
+    min-height: 100vh;
+}
+
+/* Bagian branding di kiri */
+.brand-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 38px 48px;
+    overflow: hidden;
+    color: white;
+    background:
+        linear-gradient(145deg, rgba(32, 36, 40, 0.96), rgba(32, 36, 40, 0.82)),
+        url("/images/Track%20Banner.jpg") center / cover no-repeat;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.logo-mark {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--red);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.brand-content {
+    max-width: 570px;
+    padding: 70px 0;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 24px;
+    color: #F08A8A;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.eyebrow::before {
+    width: 26px;
+    height: 2px;
+    content: "";
+    background: var(--red);
+}
+
+.brand-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    margin-top: 42px;
+}
+
+.stat-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 29px;
+    font-weight: 700;
+}
+
+.stat-label {
+    margin-top: 3px;
+    color: #AEB6BA;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Bagian form login di kanan */
+.form-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 55px clamp(30px, 6vw, 90px);
+    background: var(--cream);
+}
+
+.mobile-logo {
+    display: none;
+}
+
+.form-heading {
+    margin-bottom: 34px;
+}
+
+.alert {
+    margin-bottom: 22px;
+    padding: 13px 15px;
+    border: 1px solid;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.form-control {
+    width: 100%;
+    min-height: 50px;
+    padding: 13px 15px 13px 45px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    outline: none;
+    background: white;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(217, 67, 67, 0.10);
+}
+
+.form-control::placeholder {
+    color: #A0A8AC;
+}
+
+.field-error {
+    margin-top: 7px;
+    color: #C53030;
+    font-size: 11px;
+}
+
+.submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 51px;
+    margin-top: 7px;
+    border: none;
+    border-radius: 8px;
+    background: var(--red);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.submit-button svg {
+    width: 17px;
+    height: 17px;
+}
+
+.form-bottom {
+    margin-top: 28px;
+    padding-top: 23px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+.security-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 28px;
+    color: #899196;
+    font-size: 10px;
+}
+
+.security-note svg {
+    width: 14px;
+    height: 14px;
+}
+
+@media (max-width: 900px) {
+    .auth-layout {
+        grid-template-columns: minmax(0, 0.9fr) minmax(380px, 1fr);
+    }
+
+    .brand-panel {
+        padding: 32px;
+    }
+
+    .form-panel {
+        padding: 45px 35px;
+    }
+
+    .brand-content h1 {
+        font-size: 58px;
+    }
+
+    .brand-stats {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .auth-layout {
+        display: block;
+    }
+
+    .brand-panel {
+        display: none;
+    }
+
+    .form-panel {
+        min-height: 100vh;
+        padding: 35px 24px;
+    }
+
+    .mobile-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 55px;
+    }
+
+    .mobile-logo .logo-mark {
+        width: 40px;
+        height: 40px;
+        font-size: 23px;
+    }
+
+    .mobile-logo .logo-name {
+        color: var(--charcoal);
+        font-size: 27px;
+    }
+
+    .mobile-logo .logo-caption {
+        color: var(--muted);
+    }
+
+    .form-heading h2 {
+        font-size: 39px;
+    }
+}
+
+@media (max-width: 380px) {
+    .form-panel {
+        padding: 28px 18px;
+    }
+
+    .mobile-logo {
+        margin-bottom: 40px;
+    }
+}
