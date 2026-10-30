@@ -1,6 +1,6 @@
 # AthleteGear
 
-AthleteGear is a web-based equipment management system built with Laravel and MariaDB/MySQL. The application helps manage sports equipment, equipment categories, and borrowing transactions.
+AthleteGear is a web-based sports equipment management system built with Laravel and MariaDB/MySQL. It helps manage sports equipment, equipment categories, and borrowing transactions.
 
 ## Features
 
@@ -17,20 +17,25 @@ AthleteGear is a web-based equipment management system built with Laravel and Ma
 - **Backend:** PHP and Laravel
 - **Frontend:** Blade templates, HTML, CSS, and JavaScript
 - **Database:** MariaDB/MySQL
-- **Local development:** XAMPP and Composer
+- **Local Development:** XAMPP and Composer
+- **Frontend Tooling:** Node.js and npm
 
 ## Database Structure
 
 The application uses four main relational tables:
 
-- `users`: stores user accounts and roles
-- `categories`: stores equipment categories
-- `equipment`: stores sports equipment and stock information
-- `borrowings`: stores equipment borrowing transactions
+- `users`: Stores user accounts and roles.
+- `categories`: Stores equipment categories.
+- `equipment`: Stores sports equipment and stock information.
+- `borrowings`: Stores equipment borrowing transactions.
 
-The `equipment` table references `categories`, while `borrowings` references `users` and `equipment`.
+The relationships between the tables are:
 
-The SQL database export is available at `database/athletegear.sql`.
+- `equipment.category_id` references `categories.id`.
+- `borrowings.user_id` references `users.id`.
+- `borrowings.equipment_id` references `equipment.id`.
+
+The database SQL export is expected at `database/athletegear.sql`.
 
 ## Requirements
 
@@ -39,74 +44,132 @@ The SQL database export is available at `database/athletegear.sql`.
 - Node.js and npm
 - MariaDB/MySQL
 - Git
+- XAMPP or another local PHP and database environment
 
-## Installation
+## Installation and Setup
 
-1. Clone or download this repository.
-2. Open a terminal in the project directory.
-3. Install PHP dependencies:
+### 1. Clone the Repository
 
-   ```bash
-   composer install
-   ```
+Clone or download the AthleteGear repository, then open a terminal in the project directory.
 
-4. Install frontend dependencies:
+```bash
+git clone https://github.com/mayaamahdiyaa/AthleteGear.git
+cd AthleteGear
+```
 
-   ```bash
-   npm install
-   ```
+### 2. Install Dependencies
 
-5. Copy the environment template:
+Install the PHP dependencies:
 
-   ```bash
-   copy .env.example .env
-   ```
+```bash
+composer install
+```
 
-   On macOS/Linux, use `cp .env.example .env`.
+Install the frontend dependencies:
 
-6. Generate the application key:
+```bash
+npm install
+```
 
-   ```bash
-   php artisan key:generate
-   ```
+### 3. Configure the Environment
 
-7. Create a database named `athletegear` in MariaDB/MySQL.
-8. Configure the database connection in `.env`.
-9. Import `database/athletegear.sql` into the `athletegear` database.
-10. Start the application:
+Copy `.env.example` to `.env`.
 
-    ```bash
-    php artisan serve
-    ```
+On Windows:
 
-11. In another terminal, run the frontend development server if required:
+```powershell
+copy .env.example .env
+```
 
-    ```bash
-    npm run dev
-    ```
+On macOS/Linux:
 
-12. Open the local URL displayed by Laravel in your browser.
+```bash
+cp .env.example .env
+```
 
-**Note:** Import the SQL dump into an empty database. Do not import it on top of an existing database containing the same tables unless you have backed it up.
+Generate the application key:
+
+```bash
+php artisan key:generate
+```
+
+### 4. Configure the Database
+
+1. Start Apache and MySQL from XAMPP.
+2. Open phpMyAdmin.
+3. Create a database named `athletegear`.
+4. Configure the database connection in `.env` using the credentials for your local environment.
+
+Example configuration:
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=athletegear
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Adjust the username and password if your local database uses different credentials.
+
+### 5. Import the Database
+
+Import `database/athletegear.sql` into the `athletegear` database using phpMyAdmin or the MySQL command line.
+
+**Important:** Back up any existing database before importing. If the SQL file contains table-drop statements, importing it may replace existing tables and data.
+
+If the SQL file is unavailable, verify the project's migrations and setup instructions before creating the database structure.
+
+### 6. Run the Application
+
+Start the Laravel development server:
+
+```bash
+php artisan serve
+```
+
+If the project uses Vite for frontend assets, open another terminal and run:
+
+```bash
+npm run dev
+```
+
+Open the local URL displayed by Laravel, typically `http://127.0.0.1:8000`.
+
+Keep the relevant development processes running while testing the application.
 
 ## Environment Configuration
 
-Use `.env.example` as a template. Set your own database credentials and application settings in `.env`.
+Use `.env.example` as the configuration template and set the appropriate values in `.env`.
 
-Never commit real passwords, API keys, or other secrets to the repository.
+Do not commit `.env`, real passwords, API keys, or other sensitive credentials to the repository.
 
-## Default Login
+## Demo Account
 
-Use the account credentials provided separately by the project owner or instructor. Do not publish real account passwords in this README.
+Use the demo account credentials provided separately by the project owner or instructor.
 
 ## Project Structure
 
-- `app/` — application models and controllers
-- `database/migrations/` — database table definitions
-- `database/seeders/` — database seeders
-- `resources/views/` — Blade view templates
-- `routes/web.php` — web routes
-- `public/` — public assets and application entry point
+```text
+AthleteGear/
+├── app/                 # Application models, controllers, and logic
+├── database/
+│   ├── migrations/      # Database migrations
+│   ├── seeders/         # Database seeders
+│   └── athletegear.sql  # Database export, if included
+├── public/              # Public assets and entry point
+├── resources/
+│   └── views/           # Blade templates
+├── routes/
+│   └── web.php          # Web routes
+├── .env.example         # Environment configuration template
+├── composer.json        # PHP dependencies and scripts
+├── package.json         # Frontend dependencies and scripts
+└── README.md            # Project documentation
+```
+
+The actual project structure may contain additional files and directories.
 
 ## License
 
