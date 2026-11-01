@@ -285,6 +285,12 @@ button {
     object-fit: cover;
 }
 
+.equipment-thumb-fallback {
+    display: grid;
+    place-items: center;
+    color: #B4BBC0;
+}
+
 .equipment-heading {
     min-width: 0;
 }

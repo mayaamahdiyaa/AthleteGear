@@ -107,10 +107,22 @@
                     <div class="equipment-thumb">
                         @if ($equipment->image_url)
                             <img src="{{ $equipment->image_url }}" alt="{{ $equipment->name }}"
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <span style="display:none;" aria-hidden="true">🏃</span>
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                            <span class="equipment-thumb-fallback" style="display:none;" aria-hidden="true">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="4" y="5" width="16" height="14" rx="2"/>
+                                    <circle cx="9" cy="10" r="1.5"/>
+                                    <path d="M5 17l4.5-4.5 3 3L16 12l3.5 3.5"/>
+                                </svg>
+                            </span>
                         @else
-                            <span aria-hidden="true">🏃</span>
+                            <span class="equipment-thumb-fallback" aria-hidden="true">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="4" y="5" width="16" height="14" rx="2"/>
+                                    <circle cx="9" cy="10" r="1.5"/>
+                                    <path d="M5 17l4.5-4.5 3 3L16 12l3.5 3.5"/>
+                                </svg>
+                            </span>
                         @endif
                     </div>
 
