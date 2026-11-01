@@ -137,6 +137,7 @@ CREATE TABLE `equipment` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `category_id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `quantity` int(10) unsigned NOT NULL DEFAULT 0,
   `minimum_stock` int(10) unsigned NOT NULL DEFAULT 1,
@@ -155,7 +156,7 @@ CREATE TABLE `equipment` (
 
 LOCK TABLES `equipment` WRITE;
 /*!40000 ALTER TABLE `equipment` DISABLE KEYS */;
-INSERT INTO `equipment` VALUES (1,1,'Hurdles',NULL,7,1,'Good','2026-10-28 02:24:11','2026-10-28 03:54:22');
+INSERT INTO `equipment` VALUES (1,1,'Hurdles',NULL,NULL,7,1,'Good','2026-10-28 02:24:11','2026-10-28 03:54:22');
 /*!40000 ALTER TABLE `equipment` ENABLE KEYS */;
 UNLOCK TABLES;
 

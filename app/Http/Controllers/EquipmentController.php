@@ -5,10 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Equipment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class EquipmentController extends Controller
 {
+    /**
+     * Aturan validasi untuk foto peralatan (opsional).
+     */
+    private function imageRules(): array
+    {
+        return ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,gif', 'max:2048'];
+    }
+
     // Menampilkan semua peralatan
     public function index()
     {
@@ -33,11 +42,18 @@ class EquipmentController extends Controller
         $validated = $request->validate([
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:150',
+            'image' => $this->imageRules(),
             'description' => 'nullable|string|max:1000',
             'quantity' => 'required|integer|min:0',
             'minimum_stock' => 'required|integer|min:0',
             'condition' => ['required', Rule::in(['Good', 'Fair', 'Damaged'])],
         ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('equipment', 'public');
+        } else {
+            unset($validated['image']);
+        }
 
         Equipment::create($validated);
 
@@ -68,11 +84,28 @@ class EquipmentController extends Controller
         $validated = $request->validate([
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:150',
+            'image' => $this->imageRules(),
+            'remove_image' => 'nullable|boolean',
             'description' => 'nullable|string|max:1000',
             'quantity' => 'required|integer|min:0',
             'minimum_stock' => 'required|integer|min:0',
             'condition' => ['required', Rule::in(['Good', 'Fair', 'Damaged'])],
         ]);
+
+        $removeImage = $request->boolean('remove_image');
+        $newImage = null;
+
+        if ($request->hasFile('image')) {
+            $newImage = $request->file('image')->store('equipment', 'public');
+        }
+
+        // Ganti / hapus foto lama
+        if (($removeImage || $newImage) && $equipment->image) {
+            Storage::disk('public')->delete($equipment->image);
+        }
+
+        $validated['image'] = $newImage ?? ($removeImage ? null : $equipment->image);
+        unset($validated['remove_image']);
 
         $equipment->update($validated);
 
@@ -88,6 +121,10 @@ class EquipmentController extends Controller
             return redirect()
                 ->route('equipment.index')
                 ->with('error', 'Cannot delete equipment with borrowing records.');
+        }
+
+        if ($equipment->image) {
+            Storage::disk('public')->delete($equipment->image);
         }
 
         $equipment->delete();

@@ -145,46 +145,20 @@
                                         $conditionClass = str_contains($condition, 'poor')
                                             ? 'condition-poor'
                                             : (str_contains($condition, 'fair') ? 'condition-fair' : 'condition-good');
-
-                                        $name = strtolower($item->name);
-
-                                        if (str_contains($name, 'hurdle')) {
-                                            $imageUrl = 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=180&q=80';
-                                            $imageAlt = 'Athletics hurdle';
-                                        } elseif (str_contains($name, 'block')) {
-                                            $imageUrl = 'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=180&q=80';
-                                            $imageAlt = 'Athletics training';
-                                        } elseif (str_contains($name, 'baton')) {
-                                            $imageUrl = 'https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=180&q=80';
-                                            $imageAlt = 'Sports equipment';
-                                        } elseif (str_contains($name, 'cone')) {
-                                            $imageUrl = 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=180&q=80';
-                                            $imageAlt = 'Sports training';
-                                        } elseif (str_contains($name, 'ball')) {
-                                            $imageUrl = 'https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=180&q=80';
-                                            $imageAlt = 'Sports ball';
-                                        } elseif (str_contains($name, 'band') || str_contains($name, 'peluru') || str_contains($name, 'shot put')) {
-                                            $imageUrl = 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=180&q=80';
-                                            $imageAlt = 'Athletics training equipment';
-                                        } elseif (str_contains($name, 'mat')) {
-                                            $imageUrl = 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=180&q=80';
-                                            $imageAlt = 'Exercise mat';
-                                        } else {
-                                            $imageUrl = 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=180&q=80';
-                                            $imageAlt = 'Sports equipment';
-                                        }
                                     @endphp
 
                                     <tr class="equipment-row">
                                         <td class="number-cell">{{ $loop->iteration }}</td>
 
                                         <td>
-                                            <img class="equipment-image"
-                                                src="{{ $imageUrl }}" alt="{{ $imageAlt }}"
-                                                loading="lazy"
-                                                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                                            @if ($item->image_url)
+                                                <img class="equipment-image"
+                                                    src="{{ $item->image_url }}" alt="{{ $item->name }}"
+                                                    loading="lazy"
+                                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                                            @endif
                                             <div class="equipment-image image-fallback"
-                                                style="display:none;place-items:center;font-size:25px"
+                                                style="{{ $item->image_url ? 'display:none;' : '' }}place-items:center;font-size:25px"
                                                 aria-hidden="true">🏃</div>
                                         </td>
 

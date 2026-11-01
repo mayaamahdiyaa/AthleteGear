@@ -108,6 +108,7 @@
                 <form
                     action="{{ route('equipment.update', $equipment) }}"
                     method="POST"
+                    enctype="multipart/form-data"
                     class="equipment-form"
                 >
                     @csrf
@@ -178,6 +179,21 @@
                             @error('description')
                                 <p class="field-error">{{ $message }}</p>
                             @enderror
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                Equipment Photo
+                            </label>
+
+                            @include('equipment.partials.image-upload', [
+                                'currentImageUrl' => $equipment->image_url,
+                                'currentImageName' => $equipment->image ? basename($equipment->image) : null,
+                            ])
+
+                            <p class="form-help">
+                                Optional. Replace with a new photo, or remove the current one.
+                            </p>
                         </div>
 
                         <div class="form-group">

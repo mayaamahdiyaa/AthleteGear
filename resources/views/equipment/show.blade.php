@@ -104,6 +104,16 @@
             <div class="detail-card">
                 <div class="detail-card-header">
 
+                    <div class="equipment-thumb">
+                        @if ($equipment->image_url)
+                            <img src="{{ $equipment->image_url }}" alt="{{ $equipment->name }}"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <span style="display:none;" aria-hidden="true">🏃</span>
+                        @else
+                            <span aria-hidden="true">🏃</span>
+                        @endif
+                    </div>
+
                     <div class="equipment-heading">
                         <h2>{{ $equipment->name }}</h2>
                         <p>

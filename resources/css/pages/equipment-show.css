@@ -265,6 +265,26 @@ button {
     font-size: 27px;
 }
 
+.equipment-thumb {
+    width: 92px;
+    height: 92px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    color: #8A9298;
+    font-size: 32px;
+}
+
+.equipment-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .equipment-heading {
     min-width: 0;
 }
