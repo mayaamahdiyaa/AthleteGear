@@ -31,7 +31,7 @@
 
         $condition = strtolower($equipment->condition ?? '');
 
-        $conditionClass = str_contains($condition, 'poor')
+        $conditionClass = (str_contains($condition, 'poor') || str_contains($condition, 'damaged'))
             ? 'condition-poor'
             : (str_contains($condition, 'fair') ? 'condition-fair' : '');
     @endphp

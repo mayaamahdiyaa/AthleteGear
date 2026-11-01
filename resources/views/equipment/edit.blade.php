@@ -127,7 +127,7 @@
                                 class="form-control"
                                 value="{{ old('name', $equipment->name) }}"
                                 placeholder="e.g. Athletics Hurdle"
-                                maxlength="255"
+                                maxlength="150"
                                 required
                             >
 
@@ -255,7 +255,7 @@
                                 class="form-control"
                                 required
                             >
-                                @foreach (['Good', 'Fair', 'Poor'] as $condition)
+                                @foreach (['Good', 'Fair', 'Damaged'] as $condition)
                                     <option
                                         value="{{ $condition }}"
                                         {{ old('condition', $equipment->condition) === $condition ? 'selected' : '' }}

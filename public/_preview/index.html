@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Inventory | AthleteGear</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="preload" as="style" href="/build/assets/shared-DhW_CyW9.css" /><link rel="preload" as="style" href="/build/assets/equipment-index-C1NfzdWI.css" /><link rel="stylesheet" href="/build/assets/shared-DhW_CyW9.css" /><link rel="stylesheet" href="/build/assets/equipment-index-C1NfzdWI.css" /></head>
+<body>
+    
+    <aside class="sidebar">
+    <a href="http://localhost/dashboard" class="brand" aria-label="AthleteGear Dashboard">
+        <svg class="runner-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            
+            <circle cx="42" cy="11" r="6" fill="white"/>
+            
+            <path d="M38 22L30 38" stroke="white" stroke-width="5" stroke-linecap="round"/>
+            
+            <path d="M37 24L45 29L51 23" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <path d="M37 24L29 27L22 33" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <path d="M30 38L40 42L38 53" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <path d="M30 38L22 46L12 45" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <path d="M32.9 24.4L39.1 27.6" stroke="#D94343" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-name">Athlete<span>Gear</span></span>
+    </a>
+
+    <div class="nav-label">WORKSPACE</div>
+
+    <nav class="nav" aria-label="Main navigation">
+        <a href="http://localhost/dashboard"
+           class="nav-link ">
+            <span class="nav-icon">⌂</span> Dashboard
+        </a>
+
+        <a href="http://localhost/equipment"
+           class="nav-link ">
+            <span class="nav-icon">▤</span> Equipment
+        </a>
+
+                    <a href="http://localhost/categories"
+               class="nav-link ">
+                <span class="nav-icon">▦</span> Categories
+            </a>
+        
+        <a href="http://localhost/borrowings"
+           class="nav-link ">
+            <span class="nav-icon">◷</span> Borrowings
+        </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <div class="lane-decoration"></div>
+        <strong>BETTER GEAR.<br>BETTER PERFORMANCE.</strong>
+        <p>Built for athletes. Ready for every training session.</p>
+    </div>
+</aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div class="topbar-title">ATHLETEGEAR / EQUIPMENT CONTROL</div>
+
+            <div class="user-area">
+                <!-- Avatar dan nama user menuju halaman Profile -->
+                <a href="http://localhost/profile"
+                   class="profile-link"
+                   aria-label="Open profile">
+
+                    <div class="avatar">
+                        A
+                    </div>
+
+                    <div class="user-info">
+                        <strong>Admin</strong>
+                        <span>admin</span>
+                    </div>
+                </a>
+
+                <form action="http://localhost/logout" method="POST" class="logout-form">
+                    <input type="hidden" name="_token" value="IjVyR80quc3eGqvqIvbQlwQcB1RRMt6rZVPdAHEu" autocomplete="off">                    <button type="submit" class="logout-button">↗ Logout</button>
+                </form>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">ATHLETEGEAR / PERFORMANCE EQUIPMENT</p>
+                <h1>Equipment<br>Inventory</h1>
+                <p class="hero-subtitle">Gear up. Train harder.</p>
+            </div>
+
+            <div class="hero-note">
+                EQUIPMENT FOR DETERMINING<br>
+                THE PERFORMANCE OF<br>
+                STRONG ATHLETES
+                <span></span>
+            </div>
+        </section>
+
+        <section class="content">
+            
+            
+            
+            <div class="toolbar">
+                <form class="search-form" role="search" onsubmit="return false;">
+                    <input class="search-input" type="search" id="equipmentSearch"
+                        placeholder="⌕  Search equipment by name..."
+                        aria-label="Search equipment by name">
+                </form>
+
+                                    <div class="toolbar-action">
+                        <a href="http://localhost/equipment/create" class="button button-primary">
+                            <span style="font-size:17px">+</span> Add Equipment
+                        </a>
+                        <p class="admin-note">♟ Admin only</p>
+                    </div>
+                            </div>
+
+            <div class="table-card">
+                                    <div class="table-scroll">
+                        <table class="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Image</th>
+                                    <th>Equipment Name</th>
+                                    <th>Category</th>
+                                    <th>Available Stock</th>
+                                    <th>Minimum Stock</th>
+                                    <th>Condition</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="equipmentTableBody">
+                                                                    
+                                    <tr class="equipment-row">
+                                        <td class="number-cell">1</td>
+
+                                        <td>
+                                                                                            <img class="equipment-image"
+                                                    src="/storage/equipment/PAc2pn6QaTIg3BO3UpkrhBU5EPOwCY07bL4ddqcQ.jpg" alt="Start Block"
+                                                    loading="lazy"
+                                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                                                                                        <div class="equipment-image image-fallback"
+                                                style="display:none;place-items:center;font-size:25px"
+                                                aria-hidden="true">🏃</div>
+                                        </td>
+
+                                        <td class="equipment-name">
+                                            <a href="http://localhost/equipment/30001">Start Block</a>
+                                        </td>
+
+                                        <td>
+                                            <span class="category-badge">
+                                                Track Equipment
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <span class="stock-number">1</span>
+                                            <span class="status status-low">Low Stock</span>
+                                        </td>
+
+                                        <td>1</td>
+
+                                        <td>
+                                            <span class="condition condition-good">
+                                                Good
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <div class="actions">
+                                                <a href="http://localhost/equipment/30001" class="button button-dark">◉ View</a>
+
+                                                                                                    <a href="http://localhost/equipment/30001/edit"
+                                                        class="button button-outline"
+                                                        aria-label="Edit Start Block"
+                                                        title="Edit equipment">✎</a>
+
+                                                    <form action="http://localhost/equipment/30001"
+                                                        method="POST" class="delete-form"
+                                                        onsubmit="return confirm('Delete this equipment?')">
+                                                        <input type="hidden" name="_token" value="IjVyR80quc3eGqvqIvbQlwQcB1RRMt6rZVPdAHEu" autocomplete="off">                                                        <input type="hidden" name="_method" value="DELETE">                                                        <button type="submit" class="button button-danger"
+                                                            aria-label="Delete Start Block"
+                                                            title="Delete equipment">♜</button>
+                                                    </form>
+                                                                                            </div>
+                                        </td>
+                                    </tr>
+                                                                    
+                                    <tr class="equipment-row">
+                                        <td class="number-cell">2</td>
+
+                                        <td>
+                                                                                            <img class="equipment-image"
+                                                    src="/storage/equipment/preview-hurdle.jpg" alt="Hurdles"
+                                                    loading="lazy"
+                                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                                                                                        <div class="equipment-image image-fallback"
+                                                style="display:none;place-items:center;font-size:25px"
+                                                aria-hidden="true">🏃</div>
+                                        </td>
+
+                                        <td class="equipment-name">
+                                            <a href="http://localhost/equipment/1">Hurdles</a>
+                                        </td>
+
+                                        <td>
+                                            <span class="category-badge">
+                                                Track Equipment
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <span class="stock-number">10</span>
+                                            <span class="status status-available">Available</span>
+                                        </td>
+
+                                        <td>1</td>
+
+                                        <td>
+                                            <span class="condition condition-good">
+                                                Good
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <div class="actions">
+                                                <a href="http://localhost/equipment/1" class="button button-dark">◉ View</a>
+
+                                                                                                    <a href="http://localhost/equipment/1/edit"
+                                                        class="button button-outline"
+                                                        aria-label="Edit Hurdles"
+                                                        title="Edit equipment">✎</a>
+
+                                                    <form action="http://localhost/equipment/1"
+                                                        method="POST" class="delete-form"
+                                                        onsubmit="return confirm('Delete this equipment?')">
+                                                        <input type="hidden" name="_token" value="IjVyR80quc3eGqvqIvbQlwQcB1RRMt6rZVPdAHEu" autocomplete="off">                                                        <input type="hidden" name="_method" value="DELETE">                                                        <button type="submit" class="button button-danger"
+                                                            aria-label="Delete Hurdles"
+                                                            title="Delete equipment">♜</button>
+                                                    </form>
+                                                                                            </div>
+                                        </td>
+                                    </tr>
+                                                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-footer">
+                        <span class="legend"><span class="legend-dot" style="background:#329464"></span>Available</span>
+                        <span class="legend"><span class="legend-dot" style="background:#F4AD35"></span>Low Stock</span>
+                        <span class="legend"><span class="legend-dot" style="background:#D94343"></span>Out of Stock</span>
+                    </div>
+                            </div>
+
+            <footer class="page-footer">
+                ATHLETEGEAR · TRACK & FIELD EQUIPMENT MANAGEMENT
+            </footer>
+        </section>
+    </main>
+
+    <script>
+        const equipmentSearch = document.getElementById('equipmentSearch');
+
+        if (equipmentSearch) {
+            equipmentSearch.addEventListener('input', function () {
+                const keyword = this.value.toLowerCase().trim();
+
+                document.querySelectorAll('.equipment-row').forEach(function (row) {
+                    row.style.display = row.textContent.toLowerCase().includes(keyword) ? '' : 'none';
+                });
+            });
+        }
+    </script>
+</body>
+</html>

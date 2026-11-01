@@ -16,7 +16,12 @@
         >
 
         <div class="image-placeholder" id="equipmentImagePlaceholder" style="{{ $currentImageUrl ? 'display:none;' : '' }}">
-            <span class="image-placeholder-icon">📷</span>
+            <span class="image-placeholder-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2L9 5h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/>
+                    <circle cx="12" cy="12.5" r="3.2"/>
+                </svg>
+            </span>
             <p><strong>No photo yet</strong></p>
             <p>Take a photo, pick from gallery, or choose a file.</p>
         </div>
@@ -25,22 +30,32 @@
     <div class="image-uploader-body">
         <div class="image-uploader-options">
             <button type="button" class="image-option" data-target="imageInputCamera">
-                <span class="image-option-icon">📷</span>
+                <svg class="image-option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2L9 5h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/>
+                    <circle cx="12" cy="12.5" r="3.2"/>
+                </svg>
                 Take Photo
             </button>
 
             <button type="button" class="image-option" data-target="imageInputGallery">
-                <span class="image-option-icon">🖼️</span>
+                <svg class="image-option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="4" y="5" width="16" height="14" rx="2"/>
+                    <circle cx="9" cy="10" r="1.5"/>
+                    <path d="M5 17l4.5-4.5 3 3L16 12l3.5 3.5"/>
+                </svg>
                 From Gallery
             </button>
 
             <button type="button" class="image-option" data-target="imageInputFile">
-                <span class="image-option-icon">📁</span>
+                <svg class="image-option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 7a2 2 0 0 1 2-2h3.6l2 2H18a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>
+                </svg>
                 From File
             </button>
         </div>
 
-        <p class="image-selected" id="equipmentImageName">
+        <p class="image-selected" id="equipmentImageName"
+           data-current-name="{{ $currentImageName ? 'Current: ' . $currentImageName : '' }}">
             @if ($currentImageName)
                 Current: {{ $currentImageName }}
             @else
@@ -105,7 +120,8 @@
         function resetInput() {
             imageInput.value = '';
             showPreview(preview.getAttribute('data-current-src'));
-            nameEl.textContent = 'No file selected.';
+            // Kembalikan label sesuai kondisi awal: nama foto lama bila ada.
+            nameEl.textContent = nameEl.getAttribute('data-current-name') || 'No file selected.';
             if (removeCheckbox) removeCheckbox.checked = false;
         }
 

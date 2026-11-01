@@ -93,21 +93,32 @@ class EquipmentController extends Controller
         ]);
 
         $removeImage = $request->boolean('remove_image');
+        $oldImage = $equipment->image;
         $newImage = null;
 
         if ($request->hasFile('image')) {
             $newImage = $request->file('image')->store('equipment', 'public');
         }
 
-        // Ganti / hapus foto lama
-        if (($removeImage || $newImage) && $equipment->image) {
-            Storage::disk('public')->delete($equipment->image);
-        }
-
-        $validated['image'] = $newImage ?? ($removeImage ? null : $equipment->image);
+        $validated['image'] = $newImage ?? ($removeImage ? null : $oldImage);
         unset($validated['remove_image']);
 
-        $equipment->update($validated);
+        // Simpan ke database terlebih dahulu. File foto lama hanya dihapus
+        // setelah penyimpanan berhasil, agar foto lama tidak hilang percuma.
+        if (! $equipment->update($validated)) {
+            if ($newImage) {
+                Storage::disk('public')->delete($newImage);
+            }
+
+            return redirect()
+                ->route('equipment.edit', $equipment)
+                ->with('error', 'Equipment failed to update. No changes were saved.');
+        }
+
+        // Penyimpanan berhasil: baru hapus file lama (diganti atau dihapus).
+        if ($oldImage && $oldImage !== $equipment->image) {
+            Storage::disk('public')->delete($oldImage);
+        }
 
         return redirect()
             ->route('equipment.index')

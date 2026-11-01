@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Equipment | AthleteGear</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="preload" as="style" href="/build/assets/shared-DhW_CyW9.css" /><link rel="preload" as="style" href="/build/assets/equipment-edit-DUwm7qfN.css" /><link rel="stylesheet" href="/build/assets/shared-DhW_CyW9.css" /><link rel="stylesheet" href="/build/assets/equipment-edit-DUwm7qfN.css" /></head>
+
+<body>
+    
+    <aside class="sidebar">
+    <a href="http://localhost/dashboard" class="brand" aria-label="AthleteGear Dashboard">
+        <svg class="runner-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            
+            <circle cx="42" cy="11" r="6" fill="white"/>
+            
+            <path d="M38 22L30 38" stroke="white" stroke-width="5" stroke-linecap="round"/>
+            
+            <path d="M37 24L45 29L51 23" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <path d="M37 24L29 27L22 33" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <path d="M30 38L40 42L38 53" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <path d="M30 38L22 46L12 45" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <path d="M32.9 24.4L39.1 27.6" stroke="#D94343" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-name">Athlete<span>Gear</span></span>
+    </a>
+
+    <div class="nav-label">WORKSPACE</div>
+
+    <nav class="nav" aria-label="Main navigation">
+        <a href="http://localhost/dashboard"
+           class="nav-link ">
+            <span class="nav-icon">⌂</span> Dashboard
+        </a>
+
+        <a href="http://localhost/equipment"
+           class="nav-link ">
+            <span class="nav-icon">▤</span> Equipment
+        </a>
+
+                    <a href="http://localhost/categories"
+               class="nav-link ">
+                <span class="nav-icon">▦</span> Categories
+            </a>
+        
+        <a href="http://localhost/borrowings"
+           class="nav-link ">
+            <span class="nav-icon">◷</span> Borrowings
+        </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <div class="lane-decoration"></div>
+        <strong>BETTER GEAR.<br>BETTER PERFORMANCE.</strong>
+        <p>Built for athletes. Ready for every training session.</p>
+    </div>
+</aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div class="topbar-title">ATHLETEGEAR / EQUIPMENT CONTROL</div>
+
+            <div class="user-area">
+                <div class="avatar">
+                    A
+                </div>
+
+                <div class="user-info">
+                    <strong>Admin</strong>
+                    <span>admin</span>
+                </div>
+
+                <form action="http://localhost/logout" method="POST" class="logout-form">
+                    <input type="hidden" name="_token" value="IjVyR80quc3eGqvqIvbQlwQcB1RRMt6rZVPdAHEu" autocomplete="off">                    <button type="submit" class="logout-button">↗ Logout</button>
+                </form>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">ATHLETEGEAR / PERFORMANCE EQUIPMENT</p>
+                <h1>Edit<br>Equipment</h1>
+                <p class="hero-subtitle">Keep your equipment data accurate.</p>
+            </div>
+
+            <div class="hero-note">
+                EQUIPMENT FOR DETERMINING<br>
+                THE PERFORMANCE OF<br>
+                STRONG ATHLETES
+                <span></span>
+            </div>
+        </section>
+
+        <section class="content">
+            
+            
+            
+            <div class="page-heading">
+                <div>
+                    <p class="section-eyebrow">INVENTORY MANAGEMENT / UPDATE</p>
+                    <h2 class="section-title">Edit Equipment Details</h2>
+                    <p class="section-description">
+                        Update the information for
+                        <strong>Hurdles</strong>.
+                    </p>
+                </div>
+
+                <a href="http://localhost/equipment" class="button button-outline">
+                    ← Back to Inventory
+                </a>
+            </div>
+
+            <div class="form-card">
+                <div class="form-card-header">
+                    <div class="form-icon">✎</div>
+                    <div>
+                        <h2>Equipment Information</h2>
+                        <p>Fields marked with * are required.</p>
+                    </div>
+                </div>
+
+                <form
+                    action="http://localhost/equipment/1"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    class="equipment-form"
+                >
+                    <input type="hidden" name="_token" value="IjVyR80quc3eGqvqIvbQlwQcB1RRMt6rZVPdAHEu" autocomplete="off">                    <input type="hidden" name="_method" value="PUT">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name" class="form-label">
+                                Equipment Name <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="form-control"
+                                value="Hurdles"
+                                placeholder="e.g. Athletics Hurdle"
+                                maxlength="150"
+                                required
+                            >
+
+                                                    </div>
+
+                        <div class="form-group">
+                            <label for="category_id" class="form-label">
+                                Category <span class="required">*</span>
+                            </label>
+
+                            <select
+                                id="category_id"
+                                name="category_id"
+                                class="form-control"
+                                required
+                            >
+                                <option value="">Select a category</option>
+
+                                                                    <option
+                                        value="1"
+                                        selected
+                                    >
+                                        Track Equipment
+                                    </option>
+                                                            </select>
+
+                                                    </div>
+
+                        <div class="form-group full-width">
+                            <label for="description" class="form-label">
+                                Description
+                            </label>
+
+                            <textarea
+                                id="description"
+                                name="description"
+                                class="form-control"
+                                placeholder="Describe the equipment, its purpose, or other details..."
+                            ></textarea>
+
+                                                    </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                Equipment Photo
+                            </label>
+
+                            <div class="image-uploader">
+    <div class="image-uploader-preview">
+        <img
+            id="equipmentImagePreview"
+            src="/storage/equipment/preview-hurdle.jpg"
+            data-current-src="/storage/equipment/preview-hurdle.jpg"
+            alt="Equipment photo preview"
+            style=""
+            onerror="this.style.display='none'; var ph=document.getElementById('equipmentImagePlaceholder'); if (ph) ph.style.display='';"
+        >
+
+        <div class="image-placeholder" id="equipmentImagePlaceholder" style="display:none;">
+            <span class="image-placeholder-icon">📷</span>
+            <p><strong>No photo yet</strong></p>
+            <p>Take a photo, pick from gallery, or choose a file.</p>
+        </div>
+    </div>
+
+    <div class="image-uploader-body">
+        <div class="image-uploader-options">
+            <button type="button" class="image-option" data-target="imageInputCamera">
+                <span class="image-option-icon">📷</span>
+                Take Photo
+            </button>
+
+            <button type="button" class="image-option" data-target="imageInputGallery">
+                <span class="image-option-icon">🖼️</span>
+                From Gallery
+            </button>
+
+            <button type="button" class="image-option" data-target="imageInputFile">
+                <span class="image-option-icon">📁</span>
+                From File
+            </button>
+        </div>
+
+        <p class="image-selected" id="equipmentImageName">
+                            Current: preview-hurdle.jpg
+                    </p>
+
+        <div class="image-uploader-hint">
+            JPG, JPEG, PNG, WEBP or GIF · Max. 2 MB · Optional
+        </div>
+
+        
+                    <label class="image-remove-toggle">
+                <input type="checkbox" name="remove_image" value="1" id="removeImageCheckbox">
+                Remove current photo
+            </label>
+            </div>
+
+    
+    <input type="file" name="image" id="imageInput" accept="image/*" class="image-input-hidden">
+
+    
+    <input type="file" id="imageInputCamera" accept="image/*" capture="environment" class="image-input-hidden" tabindex="-1" aria-hidden="true">
+    <input type="file" id="imageInputGallery" accept="image/*" class="image-input-hidden" tabindex="-1" aria-hidden="true">
+    <input type="file" id="imageInputFile" accept="image/*" class="image-input-hidden" tabindex="-1" aria-hidden="true">
+</div>
+
+<script>
+    (function () {
+        var imageInput = document.getElementById('imageInput');
+        var preview = document.getElementById('equipmentImagePreview');
+        var placeholder = document.getElementById('equipmentImagePlaceholder');
+        var nameEl = document.getElementById('equipmentImageName');
+        var removeCheckbox = document.getElementById('removeImageCheckbox');
+
+        var MAX_SIZE = 2 * 1024 * 1024; // 2 MB
+        var ALLOWED = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
+        var previewUrl = null;
+
+        function showPreview(src) {
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl);
+                previewUrl = null;
+            }
+
+            if (src) {
+                preview.src = src;
+                preview.style.display = 'block';
+                placeholder.style.display = 'none';
+            } else {
+                preview.removeAttribute('src');
+                preview.style.display = 'none';
+                placeholder.style.display = '';
+            }
+        }
+
+        function resetInput() {
+            imageInput.value = '';
+            showPreview(preview.getAttribute('data-current-src'));
+            nameEl.textContent = 'No file selected.';
+            if (removeCheckbox) removeCheckbox.checked = false;
+        }
+
+        function applyFile(file) {
+            if (!file) return;
+
+            if (ALLOWED.indexOf(file.type) === -1) {
+                alert('Please choose an image file (JPG, JPEG, PNG, WEBP, or GIF).');
+                resetInput();
+                return;
+            }
+
+            if (file.size > MAX_SIZE) {
+                alert('The image is too large. Maximum size is 2 MB.');
+                resetInput();
+                return;
+            }
+
+            var dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            imageInput.files = dataTransfer.files;
+
+            previewUrl = URL.createObjectURL(file);
+            showPreview(previewUrl);
+
+            nameEl.textContent = 'Selected: ' + file.name + ' (' + (file.size / 1024).toFixed(0) + ' KB)';
+            if (removeCheckbox) removeCheckbox.checked = false;
+        }
+
+        document.querySelectorAll('.image-option').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var target = document.getElementById(button.getAttribute('data-target'));
+                if (target) target.click();
+            });
+        });
+
+        ['imageInputCamera', 'imageInputGallery', 'imageInputFile'].forEach(function (id) {
+            var picker = document.getElementById(id);
+
+            picker.addEventListener('change', function () {
+                if (picker.files && picker.files.length) {
+                    applyFile(picker.files[0]);
+                }
+                picker.value = '';
+            });
+        });
+
+        imageInput.addEventListener('change', function () {
+            if (imageInput.files && imageInput.files.length) {
+                applyFile(imageInput.files[0]);
+            }
+        });
+
+        if (removeCheckbox) {
+            removeCheckbox.addEventListener('change', function () {
+                if (removeCheckbox.checked) {
+                    imageInput.value = '';
+                    showPreview(null);
+                    nameEl.textContent = 'This photo will be removed.';
+                } else {
+                    resetInput();
+                }
+            });
+        }
+    })();
+</script>
+
+                            <p class="form-help">
+                                Optional. Replace with a new photo, or remove the current one.
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quantity" class="form-label">
+                                Available Stock <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="quantity"
+                                name="quantity"
+                                class="form-control"
+                                value="10"
+                                min="0"
+                                required
+                            >
+
+                            <p class="form-help">
+                                Enter the current quantity available in inventory.
+                            </p>
+
+                                                    </div>
+
+                        <div class="form-group">
+                            <label for="minimum_stock" class="form-label">
+                                Minimum Stock <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="minimum_stock"
+                                name="minimum_stock"
+                                class="form-control"
+                                value="1"
+                                min="0"
+                                required
+                            >
+
+                            <p class="form-help">
+                                Used to identify equipment that needs restocking.
+                            </p>
+
+                                                    </div>
+
+                        <div class="form-group">
+                            <label for="condition" class="form-label">
+                                Equipment Condition <span class="required">*</span>
+                            </label>
+
+                            <select
+                                id="condition"
+                                name="condition"
+                                class="form-control"
+                                required
+                            >
+                                                                    <option
+                                        value="Good"
+                                        selected
+                                    >
+                                        Good
+                                    </option>
+                                                                    <option
+                                        value="Fair"
+                                        
+                                    >
+                                        Fair
+                                    </option>
+                                                                    <option
+                                        value="Damaged"
+                                        
+                                    >
+                                        Damaged
+                                    </option>
+                                                            </select>
+
+                                                    </div>
+                    </div>
+
+                    <hr class="form-divider">
+
+                    <div class="form-actions">
+                        <p class="form-help">
+                            Changes will be saved to the equipment inventory.
+                        </p>
+
+                        <div class="form-actions-right">
+                            <a href="http://localhost/equipment" class="button button-outline">
+                                Cancel
+                            </a>
+
+                            <button type="submit" class="button button-primary">
+                                ✓ Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <footer class="page-footer">
+                ATHLETEGEAR · TRACK & FIELD EQUIPMENT MANAGEMENT
+            </footer>
+        </section>
+    </main>
+</body>
+</html>
