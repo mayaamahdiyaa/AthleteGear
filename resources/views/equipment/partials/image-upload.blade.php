@@ -101,11 +101,6 @@
         var previewUrl = null;
 
         function showPreview(src) {
-            if (previewUrl) {
-                URL.revokeObjectURL(previewUrl);
-                previewUrl = null;
-            }
-
             if (src) {
                 preview.src = src;
                 preview.style.display = 'block';
@@ -119,10 +114,15 @@
 
         function resetInput() {
             imageInput.value = '';
-            showPreview(preview.getAttribute('data-current-src'));
+            // Revoke the current preview URL before resetting to the original image
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl);
+                previewUrl = null;
+            }
             // Kembalikan label sesuai kondisi awal: nama foto lama bila ada.
             nameEl.textContent = nameEl.getAttribute('data-current-name') || 'No file selected.';
             if (removeCheckbox) removeCheckbox.checked = false;
+            showPreview(preview.getAttribute('data-current-src'));
         }
 
         function applyFile(file) {
@@ -138,6 +138,11 @@
                 alert('The image is too large. Maximum size is 2 MB.');
                 resetInput();
                 return;
+            }
+
+            // Revoke the old blob URL if exists before creating a new one
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl);
             }
 
             var dataTransfer = new DataTransfer();
@@ -178,6 +183,10 @@
         if (removeCheckbox) {
             removeCheckbox.addEventListener('change', function () {
                 if (removeCheckbox.checked) {
+                    if (previewUrl) {
+                        URL.revokeObjectURL(previewUrl);
+                        previewUrl = null;
+                    }
                     imageInput.value = '';
                     showPreview(null);
                     nameEl.textContent = 'This photo will be removed.';
