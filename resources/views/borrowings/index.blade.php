@@ -87,9 +87,11 @@
             </form>
 
             <div class="toolbar-action">
-                <a href="{{ route('borrowings.create') }}" class="button button-primary">
-                    <span style="font-size:17px;">+</span> New Borrowing
-                </a>
+                @unless ($isAdmin)
+                    <a href="{{ route('borrowings.create') }}" class="button button-primary">
+                        <span style="font-size:17px;">+</span> New Borrowing
+                    </a>
+                @endunless
                 <p class="admin-note">
                     {{ $isAdmin ? '♟ Admin view · All records' : '◷ Your borrowing records' }}
                 </p>

@@ -105,8 +105,8 @@
                 <div class="detail-card-header">
 
                     <div class="equipment-thumb">
-                        @if ($equipment->image_url)
-                            <img src="{{ $equipment->image_url }}" alt="{{ $equipment->name }}"
+                        @if ($equipment->image)
+                            <img src="{{ Storage::url($equipment->image) }}" alt="{{ $equipment->name }}"
                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
                             <span class="equipment-thumb-fallback" style="display:none;" aria-hidden="true">
                                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">

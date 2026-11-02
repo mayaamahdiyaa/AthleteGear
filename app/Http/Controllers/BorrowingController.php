@@ -25,9 +25,15 @@ class BorrowingController extends Controller
         return view('borrowings.index', compact('borrowings'));
     }
 
-    // Menampilkan form peminjaman
+    // Menampilkan form peminjaman hanya untuk athlete
     public function create()
     {
+        // Admin tidak boleh mengakses halaman form tambah borrowing
+        if (auth()->user()->isAdmin()) {
+            return redirect()->route('borrowings.index')
+                ->with('error', 'Anda tidak memiliki akses untuk menambah peminjaman.');
+        }
+
         $equipment = Equipment::with('category')
             ->where('quantity', '>', 0)
             ->orderBy('name')
@@ -39,6 +45,13 @@ class BorrowingController extends Controller
     // Menyimpan peminjaman dan mengurangi stok
     public function store(Request $request)
     {
+        // Admin tidak boleh membuat transaksi borrowing melalui request langsung
+        if (auth()->user()->isAdmin()) {
+            return redirect()
+                ->route('borrowings.index')
+                ->with('error', 'Anda tidak memiliki akses untuk membuat transaksi peminjaman.');
+        }
+
         $validated = $request->validate([
             'equipment_id' => 'required|exists:equipment,id',
             'quantity' => 'required|integer|min:1',

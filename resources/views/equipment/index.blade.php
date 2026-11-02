@@ -151,14 +151,14 @@
                                         <td class="number-cell">{{ $loop->iteration }}</td>
 
                                         <td>
-                                            @if ($item->image_url)
+                                            @if ($item->image)
                                                 <img class="equipment-image"
-                                                    src="{{ $item->image_url }}" alt="{{ $item->name }}"
+                                                    src="{{ Storage::url($item->image) }}" alt="{{ $item->name }}"
                                                     loading="lazy"
                                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
                                             @endif
                                             <div class="equipment-image image-fallback"
-                                                style="{{ $item->image_url ? 'display:none;' : '' }}place-items:center;color:#B4BBC0"
+                                                style="{{ $item->image ? 'display:none;' : '' }}place-items:center;color:#B4BBC0"
                                                 aria-hidden="true">
                                                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                                                     <rect x="4" y="5" width="16" height="14" rx="2"/>

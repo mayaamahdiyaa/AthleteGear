@@ -187,7 +187,7 @@
                             </label>
 
                             @include('equipment.partials.image-upload', [
-                                'currentImageUrl' => $equipment->image_url,
+                                'currentImageUrl' => Storage::url($equipment->image ?? ''),
                                 'currentImageName' => $equipment->image ? basename($equipment->image) : null,
                             ])
 
